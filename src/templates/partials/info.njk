@@ -1,0 +1,90 @@
+{% include "data/regions.njk" %}
+{% from "macros/region-dropdown.njk" import regionDropdown %}
+
+{% set promoCards = [
+  {
+    title: "Подарок за отзыв",
+    text: "1 неделя бесплатного интернета",
+    image: "/src/assets/images/gift.png",
+    width: 200,
+    height: 200
+  },
+  {
+    title: "Приведи друга",
+    text: "Получи 1 000 ₽ <br>на лицевой счёт",
+    image: "/src/assets/images/1000.png",
+    width: 272,
+    height: 200
+  },
+  {
+    title: "Кэшбэк 10%",
+    text: "За оплату более чем на 3 месяца вперёд",
+    image: "/src/assets/images/percent.png",
+    width: 230,
+    height: 200
+  },
+  {
+    title: "ТВ в подарок",
+    text: "На 1 месяц при подк-лючении интернета",
+    image: "/src/assets/images/TV.png",
+    width: 230,
+    height: 200
+  }
+] %}
+
+<section class="info">
+  <div class="container">
+    <div class="info__box">
+      <div class="info__sections">
+        <section class="info__section">
+          <h2 class="section-title section-title--center">О компании</h2>
+          <p class="info__about-text">
+            «Большие связи» — динамично развивающийся региональный интернет-провайдер.<br>
+            Мы работаем на рынке услуг связи с 2017 года и специализируемся<br>
+            на предоставлении высокоскоростного интернета для частного сектора в регионах присутствия.
+          </p>
+        </section>
+
+        <section class="info__section">
+          <h2 class="section-title section-title--center">Акции</h2>
+
+          <ul class="info__promo-grid">
+            {% for card in promoCards %}
+              <li class="info__promo-card">
+                <h3 class="info__promo-title">{{ card.title }}</h3>
+                <p class="info__promo-text">{{ card.text | safe }}</p>
+                <img
+                  class="info__promo-image"
+                  src="{{ card.image }}"
+                  width="{{ card.width }}"
+                  height="{{ card.height }}"
+                  alt=""
+                >
+              </li>
+            {% endfor %}
+          </ul>
+        </section>
+
+        <section class="info__section">
+          <h2 class="section-title section-title--center">Места покрытия</h2>
+
+          <ul class="info__coverage-grid">
+            {% for regionId in coverageRegionIds %}
+              {% set region = regions[regionId] %}
+              <li class="info__coverage-item">
+                <img
+                  class="info__coverage-image"
+                  src="{{ region.image }}"
+                  width="100"
+                  height="100"
+                  alt="{{ region.alt }}"
+                >
+                {{ regionDropdown(region.id, region.buttonLabel, region.cities) }}
+              </li>
+            {% endfor %}
+          </ul>
+        </section>
+      </div>
+    </div>
+  </div>
+</section>

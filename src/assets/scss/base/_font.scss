@@ -1,0 +1,19 @@
+@font-face {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 400;
+  font-display: swap;
+  src:
+    url('../../fonts/ubuntu/ubuntu-regular.woff2') format('woff2'),
+    url('../../fonts/ubuntu/ubuntu-regular.woff') format('woff');
+}
+
+@font-face {
+  font-family: Ubuntu;
+  font-style: normal;
+  font-weight: 700;
+  font-display: swap;
+  src:
+    url('../../fonts/ubuntu/ubuntu-bold.woff2') format('woff2'),
+    url('../../fonts/ubuntu/ubuntu-bold.woff') format('woff');
+}

@@ -1,0 +1,38 @@
+{
+  "name": "big-connections",
+  "version": "1.0.0",
+  "description": "",
+  "type": "module",
+  "private": true,
+  "scripts": {
+    "dev": "vite",
+    "build": "vite build && node scripts/format-html.js",
+    "preview": "vite preview",
+    "lint": "eslint .",
+    "format": "prettier --write \"**/*.{html,njk,scss,js,json,md}\""
+  },
+  "keywords": [],
+  "author": "",
+  "license": "ISC",
+  "devDependencies": {
+    "@eslint/js": "^10.0.1",
+    "@html-eslint/eslint-plugin": "^0.63.0",
+    "@html-eslint/parser": "^0.63.0",
+    "autoprefixer": "^10.5.2",
+    "esbuild": "^0.28.1",
+    "eslint": "^10.6.0",
+    "fast-glob": "^3.3.3",
+    "globals": "^17.7.0",
+    "js-beautify": "^2.0.3",
+    "nunjucks": "^3.2.4",
+    "prettier": "^3.9.4",
+    "prettier-plugin-nunjucks": "^0.1.4",
+    "sass": "^1.101.0",
+    "vite": "^8.1.3",
+    "vite-plugin-image-optimizer": "^2.0.3",
+    "vite-plugin-svg-icons": "^2.0.1"
+  },
+  "dependencies": {
+    "swiper": "^14.0.2"
+  }
+}

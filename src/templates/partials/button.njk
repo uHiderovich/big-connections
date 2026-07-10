@@ -1,0 +1,11 @@
+{% set variant = button.variant | default('blue') %}
+{% set tag = 'a' if button.href else 'button' %}
+{% set btnClass = 'btn btn--' ~ variant ~ ((' ' ~ button.class) if button.class else '') %}
+
+<{{ tag }}
+  class="{{ btnClass }}"
+  {% if button.href %}href="{{ button.href }}"{% endif %}
+  {% if tag == 'button' %}type="{{ button.type | default('button') }}"{% endif %}
+>
+  {{ button.text }}
+</{{ tag }}>

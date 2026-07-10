@@ -1,0 +1,27 @@
+{% macro regionDropdown(id, label, cities) %}
+  <div class="region-dropdown js-region-dropdown">
+    <button
+      class="region-btn js-region-dropdown-toggle"
+      type="button"
+      aria-expanded="false"
+      aria-controls="region-dropdown-{{ id }}"
+    >
+      <span class="region-btn__text">{{ label }}</span>
+      {% set icon = {
+        name: "arrow-right",
+        class: "region-btn__arrow"
+      } %}
+      {% include "partials/icon.njk" %}
+    </button>
+
+    <ul
+      class="region-dropdown__list js-region-dropdown-panel"
+      id="region-dropdown-{{ id }}"
+      aria-hidden="true"
+    >
+      {% for city in cities %}
+        <li><a class="region-dropdown__link" href="#">{{ city }}</a></li>
+      {% endfor %}
+    </ul>
+  </div>
+{% endmacro %}

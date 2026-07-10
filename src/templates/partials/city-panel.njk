@@ -1,0 +1,50 @@
+{% include "data/regions.njk" %}
+
+<div id="city-panel" class="city-panel js-city-select-panel" aria-hidden="true">
+  <div class="city-panel__content">
+    <div class="container city-panel__inner">
+      <div class="city-panel__top">
+        <div class="city-select city-panel__city-select">
+          {% set icon ={
+              name: "location",
+              class: "city-select__icon"
+            }
+          %}
+          {% include "partials/icon.njk" %}
+          <span class="city-select__text">Черемхово</span>
+        </div>
+
+        {% set button ={
+            text: "Остаться здесь",
+            type: "button",
+            variant: "orange",
+            class: "city-panel__stay js-city-select-stay"
+          }
+        %}
+        {% include "partials/button.njk" %}
+      </div>
+
+      <p class="city-panel__title">Выберите другой город</p>
+
+      <div class="city-panel__grid">
+        {% for column in cityPanelColumns %}
+          <div class="city-panel__col">
+            {% for regionId in column.ids %}
+              {% set region = regions[regionId] %}
+              <div class="city-panel__group{% if region.panelSpaced %} city-panel__group--spaced{% endif %}">
+                <h3 class="city-panel__region">{{ region.panelTitle }}</h3>
+                <ul class="city-panel__list">
+                  {% for city in region.cities %}
+                    <li><a class="city-panel__link" href="#">{{ city }}</a></li>
+                  {% endfor %}
+                </ul>
+              </div>
+            {% endfor %}
+          </div>
+        {% endfor %}
+      </div>
+    </div>
+  </div>
+
+  <div class="city-panel__overlay js-city-select-overlay" aria-hidden="true"></div>
+</div>

@@ -1,0 +1,89 @@
+<header class="header js-header">
+  <div class="header__top">
+    <div class="container header__top-inner">
+      <button
+        class="header__city-select city-select js-city-select-toggle"
+        type="button"
+        aria-expanded="false"
+        aria-controls="city-panel"
+      >
+        {% set icon ={
+            name: "location",
+            class: "city-select__icon"
+          }
+        %}
+        {% include "partials/icon.njk" %}
+        <span class="city-select__text">Черемхово</span>
+      </button>
+
+      <a class="header__support-link" href="#">Техподдержка</a>
+      <a class="header__phone" href="tel:+78004441109">+7 800 444 11 09</a>
+    </div>
+
+    {% include "partials/city-panel.njk" %}
+  </div>
+
+  <div class="container header__bottom">
+    <a class="header__logo" href="/">
+      <img
+        class="header__logo-img"
+        src="/src/assets/images/logo.png"
+        width="226"
+        height="45"
+        alt="Большие Связи"
+      />
+    </a>
+
+    <nav class="header__nav" aria-label="Основная навигация">
+      {% from "macros/nav-dropdown.njk" import navDropdown %}
+
+      {{ navDropdown("about", "О компании", [
+        "Деятельность",
+        "Вакансии",
+        "Инструкции",
+        "Новости",
+        "Контакты"
+      ]) }}
+
+      {{ navDropdown("tariffs", "Тарифы и услуги", [
+        "Интернет в много-квартирный дом",
+        "Интернет для частного сектора",
+        "Домофония",
+        "Видеонаблюдение",
+        "Цифровое ТВ",
+        "Рассрочка"
+      ]) }}
+    </nav>
+
+    <div class="header__actions">
+      {% set button ={
+          text: "Пополнить баланс",
+          href: "#",
+          variant: "blue",
+          class: "btn--198"
+        }
+      %}
+      {% include "partials/button.njk" %}
+
+      {% set button ={
+          text: "Подключиться",
+          href: "#",
+          variant: "orange",
+          class: "btn--198"
+        }
+      %}
+      {% include "partials/button.njk" %}
+
+      <a class="profile-btn" href="#" aria-label="Профиль">
+        {% set icon ={
+            name: "profile",
+            class: "profile-btn__icon"
+          }
+        %}
+        {% include "partials/icon.njk" %}
+      </a>
+    </div>
+  </div>
+
+  <div class="header__nav-overlay js-nav-overlay" aria-hidden="true"></div>
+</header>
