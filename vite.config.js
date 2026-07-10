@@ -206,6 +206,7 @@ export default defineConfig({
     },
   },
   build: {
+    assetsInlineLimit: 0,
     cssMinify: true,
     emptyOutDir: true,
     minify: 'esbuild',
