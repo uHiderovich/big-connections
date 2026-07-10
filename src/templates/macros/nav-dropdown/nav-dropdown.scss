@@ -1,3 +1,26 @@
+.nav-btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  height: 44px;
+  padding-inline: 20px;
+  border: 0;
+  border-radius: 10px;
+  background: var(--color-light-blue);
+  font-weight: 700;
+  color: var(--color-dark-grey);
+  font-size: 16px;
+  cursor: pointer;
+
+  &__arrow {
+    flex-shrink: 0;
+    width: 8px;
+    height: 15px;
+    margin-left: 10px;
+    transition: transform 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+  }
+}
+
 .nav-dropdown {
   position: relative;
 
@@ -63,7 +86,6 @@
   z-index: 15;
   background-color: rgb(255 255 255 / 88%);
   backdrop-filter: blur(4px);
-  -webkit-backdrop-filter: blur(4px);
   opacity: 0;
   visibility: hidden;
   pointer-events: none;

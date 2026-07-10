@@ -1,3 +1,5 @@
+import { setScrollLocked } from '../../../js/modules/scroll-lock';
+
 let closeNavDropdowns = () => {};
 
 export { closeNavDropdowns };
@@ -24,7 +26,7 @@ const updateListOffset = (dropdown) => {
   );
 };
 
-export function initNavDropdown() {
+export function init() {
   const header = document.querySelector('.js-header');
 
   if (!header) {
@@ -63,6 +65,7 @@ export function initNavDropdown() {
     overlay?.classList.remove(overlayOpenClass);
     overlay?.setAttribute('aria-hidden', 'true');
     header.classList.remove(headerNavOpenClass);
+    setScrollLocked('nav-dropdown', false);
   };
 
   const openDropdown = (dropdown) => {
@@ -78,6 +81,7 @@ export function initNavDropdown() {
     overlay?.classList.add(overlayOpenClass);
     overlay?.setAttribute('aria-hidden', 'false');
     header.classList.add(headerNavOpenClass);
+    setScrollLocked('nav-dropdown', true);
   };
 
   dropdowns.forEach((dropdown) => {

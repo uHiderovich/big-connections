@@ -1,5 +1,4 @@
-{% include "data/regions.njk" %}
-{% from "macros/region-dropdown.njk" import regionDropdown %}
+{% from "macros/region-dropdown/region-dropdown.njk" import regionDropdown %}
 
 {% set promoCards = [
   {
@@ -69,8 +68,7 @@
           <h2 class="section-title section-title--center">Места покрытия</h2>
 
           <ul class="info__coverage-grid">
-            {% for regionId in coverageRegionIds %}
-              {% set region = regions[regionId] %}
+            {% for region in regions %}
               <li class="info__coverage-item">
                 <img
                   class="info__coverage-image"

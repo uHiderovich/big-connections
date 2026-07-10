@@ -1,4 +1,5 @@
 import { existsSync, mkdirSync, readdirSync, renameSync, rmSync, statSync } from 'node:fs';
+import { cityPanelColumns, regions } from './src/data/regions.js';
 import { dirname, extname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -162,6 +163,9 @@ function nunjucksHtml() {
     trimBlocks: true,
     lstripBlocks: true,
   });
+
+  env.addGlobal('regions', regions);
+  env.addGlobal('cityPanelColumns', cityPanelColumns);
 
   return {
     name: 'nunjucks-html',

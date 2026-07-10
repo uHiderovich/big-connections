@@ -1,6 +1,7 @@
-import { closeNavDropdowns } from './nav-dropdown';
+import { closeNavDropdowns } from '../../macros/nav-dropdown/nav-dropdown';
+import { setScrollLocked } from '../../../js/modules/scroll-lock';
 
-export function initCityPanel() {
+export function init() {
   const panel = document.querySelector('.js-city-select-panel');
 
   if (!panel) {
@@ -24,6 +25,7 @@ export function initCityPanel() {
       panel.setAttribute('aria-hidden', 'false');
       overlay?.setAttribute('aria-hidden', 'false');
       toggle?.setAttribute('aria-expanded', 'true');
+      setScrollLocked('city-panel', true);
       return;
     }
 
@@ -44,6 +46,7 @@ export function initCityPanel() {
 
     panel.classList.remove(closingClass);
     panel.setAttribute('aria-hidden', 'true');
+    setScrollLocked('city-panel', false);
   });
 
   toggle?.addEventListener('click', () => {

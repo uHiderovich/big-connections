@@ -1,11 +1,10 @@
 import '../assets/scss/main.scss';
 import 'virtual:svg-icons-register';
-import { initCoverageDropdown } from './modules/coverage-dropdown';
-import { initCityPanel } from './modules/city-panel';
-import { initHeroSlider } from './modules/hero-slider';
-import { initNavDropdown } from './modules/nav-dropdown';
 
-initNavDropdown();
-initCityPanel();
-initHeroSlider();
-initCoverageDropdown();
+import.meta.glob('../templates/**/*.scss', { eager: true });
+
+const templateModules = import.meta.glob('../templates/**/*.js', { eager: true });
+
+Object.values(templateModules).forEach((module) => {
+  module.init?.();
+});

@@ -6,12 +6,12 @@
       aria-expanded="false"
       aria-controls="region-dropdown-{{ id }}"
     >
-      <span class="region-btn__text">{{ label }}</span>
+      <span class="region-btn__text">{{ label | safe }}</span>
       {% set icon = {
         name: "arrow-right",
         class: "region-btn__arrow"
       } %}
-      {% include "partials/icon.njk" %}
+      {% include "partials/icon/icon.njk" %}
     </button>
 
     <ul

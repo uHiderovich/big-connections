@@ -32,7 +32,16 @@
     "vite-plugin-image-optimizer": "^2.0.3",
     "vite-plugin-svg-icons": "^2.0.1"
   },
+  "browserslist": [
+    "> 0.2%",
+    "last 3 versions",
+    "Firefox ESR",
+    "not dead",
+    "not op_mini all"
+  ],
   "dependencies": {
+    "imask": "^7.6.1",
+    "just-validate": "^4.3.0",
     "swiper": "^14.0.2"
   }
 }

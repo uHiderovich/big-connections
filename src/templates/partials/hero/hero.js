@@ -4,7 +4,7 @@ import { Pagination, EffectFade } from 'swiper/modules';
 import 'swiper/css';
 import 'swiper/css/pagination';
 
-export function initHeroSlider() {
+export function init() {
   const slider = document.querySelector('.js-hero-slider');
 
   if (!slider) {

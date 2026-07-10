@@ -12,7 +12,7 @@
             class: "city-select__icon"
           }
         %}
-        {% include "partials/icon.njk" %}
+        {% include "partials/icon/icon.njk" %}
         <span class="city-select__text">Черемхово</span>
       </button>
 
@@ -20,7 +20,7 @@
       <a class="header__phone" href="tel:+78004441109">+7 800 444 11 09</a>
     </div>
 
-    {% include "partials/city-panel.njk" %}
+    {% include "partials/city-panel/city-panel.njk" %}
   </div>
 
   <div class="container header__bottom">
@@ -35,7 +35,7 @@
     </a>
 
     <nav class="header__nav" aria-label="Основная навигация">
-      {% from "macros/nav-dropdown.njk" import navDropdown %}
+      {% from "macros/nav-dropdown/nav-dropdown.njk" import navDropdown %}
 
       {{ navDropdown("about", "О компании", [
         "Деятельность",
@@ -63,7 +63,7 @@
           class: "btn--198"
         }
       %}
-      {% include "partials/button.njk" %}
+      {% include "partials/button/button.njk" %}
 
       {% set button ={
           text: "Подключиться",
@@ -72,7 +72,7 @@
           class: "btn--198"
         }
       %}
-      {% include "partials/button.njk" %}
+      {% include "partials/button/button.njk" %}
 
       <a class="profile-btn" href="#" aria-label="Профиль">
         {% set icon ={
@@ -80,7 +80,7 @@
             class: "profile-btn__icon"
           }
         %}
-        {% include "partials/icon.njk" %}
+        {% include "partials/icon/icon.njk" %}
       </a>
     </div>
   </div>

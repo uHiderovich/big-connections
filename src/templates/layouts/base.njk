@@ -8,13 +8,13 @@
     <script type="module" src="/src/js/main.js"></script>
   </head>
   <body class="page">
-    {% include "partials/header.njk" %}
+    {% include "partials/header/header.njk" %}
 
     <main class="page__main">
       {% block content %}
       {% endblock %}
     </main>
 
-    {% include "partials/footer.njk" %}
+    {% include "partials/footer/footer.njk" %}
   </body>
 </html>

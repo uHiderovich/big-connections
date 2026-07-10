@@ -1,4 +1,4 @@
-export function initCoverageDropdown() {
+export function init() {
   const dropdowns = document.querySelectorAll('.js-region-dropdown');
 
   if (!dropdowns.length) {

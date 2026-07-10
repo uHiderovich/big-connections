@@ -1,5 +1,3 @@
-{% include "data/regions.njk" %}
-
 <div id="city-panel" class="city-panel js-city-select-panel" aria-hidden="true">
   <div class="city-panel__content">
     <div class="container city-panel__inner">
@@ -10,7 +8,7 @@
               class: "city-select__icon"
             }
           %}
-          {% include "partials/icon.njk" %}
+          {% include "partials/icon/icon.njk" %}
           <span class="city-select__text">Черемхово</span>
         </div>
 
@@ -21,7 +19,7 @@
             class: "city-panel__stay js-city-select-stay"
           }
         %}
-        {% include "partials/button.njk" %}
+        {% include "partials/button/button.njk" %}
       </div>
 
       <p class="city-panel__title">Выберите другой город</p>
@@ -29,16 +27,19 @@
       <div class="city-panel__grid">
         {% for column in cityPanelColumns %}
           <div class="city-panel__col">
-            {% for regionId in column.ids %}
-              {% set region = regions[regionId] %}
-              <div class="city-panel__group{% if region.panelSpaced %} city-panel__group--spaced{% endif %}">
-                <h3 class="city-panel__region">{{ region.panelTitle }}</h3>
-                <ul class="city-panel__list">
-                  {% for city in region.cities %}
-                    <li><a class="city-panel__link" href="#">{{ city }}</a></li>
-                  {% endfor %}
-                </ul>
-              </div>
+            {% for regionId in column %}
+              {% for region in regions %}
+                {% if region.id == regionId %}
+                  <div class="city-panel__group{% if region.panelSpaced %} city-panel__group--spaced{% endif %}">
+                    <h3 class="city-panel__region">{{ region.panelTitle }}</h3>
+                    <ul class="city-panel__list">
+                      {% for city in region.cities %}
+                        <li><a class="city-panel__link" href="#">{{ city }}</a></li>
+                      {% endfor %}
+                    </ul>
+                  </div>
+                {% endif %}
+              {% endfor %}
             {% endfor %}
           </div>
         {% endfor %}

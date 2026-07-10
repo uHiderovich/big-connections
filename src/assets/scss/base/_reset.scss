@@ -20,6 +20,21 @@ body {
 a {
   color: inherit;
   text-decoration: none;
+
+  &:focus-visible {
+    outline: 2px solid var(--color-main-blue);
+    outline-offset: 2px;
+  }
+}
+
+button,
+input,
+textarea,
+select {
+  &:focus,
+  &:focus-visible {
+    outline: none;
+  }
 }
 
 h1,
