@@ -1,0 +1,13 @@
+<li class="benefit">
+  <div class="benefit__icon-wrap">
+    {% if benefit.icon %}
+      {% set icon = {
+        name: benefit.icon,
+        class: "benefit__icon"
+      } %}
+      {% include "partials/icon/icon.njk" %}
+    {% endif %}
+  </div>
+
+  <p class="benefit__text">{{ benefit.text | safe }}</p>
+</li>

@@ -1,5 +1,17 @@
 import { existsSync, mkdirSync, readdirSync, renameSync, rmSync, statSync } from 'node:fs';
 import { cityPanelColumns, regions } from './src/data/regions.js';
+import {
+  contactSections,
+  headerPhone,
+  socialLinks,
+} from './src/data/contacts.js';
+import { instructionSections } from './src/data/instructions.js';
+import {
+  mainOfficeAddress,
+  officeAddressRows,
+  officePhone,
+  officeSchedule,
+} from './src/data/office.js';
 import { dirname, extname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
@@ -166,6 +178,14 @@ function nunjucksHtml() {
 
   env.addGlobal('regions', regions);
   env.addGlobal('cityPanelColumns', cityPanelColumns);
+  env.addGlobal('officeSchedule', officeSchedule);
+  env.addGlobal('officePhone', officePhone);
+  env.addGlobal('officeAddressRows', officeAddressRows);
+  env.addGlobal('mainOfficeAddress', mainOfficeAddress);
+  env.addGlobal('headerPhone', headerPhone);
+  env.addGlobal('socialLinks', socialLinks);
+  env.addGlobal('contactSections', contactSections);
+  env.addGlobal('instructionSections', instructionSections);
 
   return {
     name: 'nunjucks-html',

@@ -1,0 +1,20 @@
+<ul class="instructions-page__list">
+  {% for section in instructionSections %}
+    <li class="instructions-page__item">
+      <h2 class="section-title">{{ section.title }}</h2>
+
+      {% set divider = { space: true } %}
+      {% include "partials/divider/divider.njk" %}
+
+      <ul class="instructions-page__links">
+        {% for link in section.links %}
+          <li>
+            <a class="simple-box simple-box--blue instructions-page__link" href="{{ link.href }}">
+              {{ link.label }}
+            </a>
+          </li>
+        {% endfor %}
+      </ul>
+    </li>
+  {% endfor %}
+</ul>

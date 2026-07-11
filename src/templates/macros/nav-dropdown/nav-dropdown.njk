@@ -1,7 +1,7 @@
 {% macro navDropdown(id, label, items) %}
   <div class="nav-dropdown js-nav-dropdown">
     <button
-      class="nav-btn js-nav-dropdown-toggle"
+      class="nav-btn simple-box simple-box--blue js-nav-dropdown-toggle"
       type="button"
       aria-expanded="false"
       aria-controls="nav-dropdown-{{ id }}"
@@ -17,7 +17,12 @@
     <div class="nav-dropdown__panel js-nav-dropdown-panel" id="nav-dropdown-{{ id }}" aria-hidden="true">
       <ul class="nav-dropdown__list">
         {% for item in items %}
-          <li><a class="nav-dropdown__link" href="#">{{ item }}</a></li>
+          <li>
+            <a
+              class="nav-dropdown__link"
+              href="{{ item.href if item.href is defined else '#' }}"
+            >{{ item.text if item.text is defined else item }}</a>
+          </li>
         {% endfor %}
       </ul>
     </div>

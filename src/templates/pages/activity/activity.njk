@@ -1,0 +1,53 @@
+{% set benefits = [
+  {
+    icon: "lock",
+    text: "Стабильное и высокое<br>качество услуг"
+  },
+  {
+    icon: "wallet",
+    text: "Выгодные, гибкие тарифы"
+  },
+  {
+    icon: "puzzle",
+    text: "Многофункциональное<br>интерактивное телевидение"
+  },
+  {
+    icon: "bolt",
+    text: "Быстрая, качественная<br>и бесплатная техническая поддержка"
+  },
+  {
+    icon: "card",
+    text: "Любые способы оплаты,<br>удобные для Вас"
+  },
+  {
+    icon: "handshake",
+    text: "Партнёрская программа:<br>Зарабатывайте с нами, став нашим Партнёром"
+  }
+] %}
+
+<div class="activity-page white-box">
+  <section class="activity-page__section">
+    <h2 class="activity-page__title">Деятельность компании</h2>
+    <p class="activity-page__text">
+      Компания «Большие Связи» предоставляет полный спектр телекоммуникационных услуг для дома, офиса и предприятий, при этом создает наиболее комфортные условия для своих Клиентов. Основные принципы нашей компании – это высокое качество услуг и индивидуальный подход к Клиенту.
+      <br>
+      <br>
+      Наша миссия – «Скоростной интернет везде». Предоставляем услуги телекоммуникационного провайдера путем подключения пользователей к современному высокоскоростному оборудованию, оказывая поддержку по настройке оборудования и предоставляя профессиональные консультации каждому клиенту независимо от уровня его знаний компьютерных технологий.
+    </p>
+  </section>
+
+  <section class="activity-page__section">
+    <h2 class="activity-page__title">Преимущества</h2>
+
+    <ul class="activity-page__benefits">
+      {% for item in benefits %}
+        {% set benefit = item %}
+        {% include "partials/benefit/benefit.njk" %}
+      {% endfor %}
+    </ul>
+  </section>
+
+  <section class="activity-page__section activity-page__section--offices">
+    {% include "partials/office-addresses/office-addresses.njk" %}
+  </section>
+</div>

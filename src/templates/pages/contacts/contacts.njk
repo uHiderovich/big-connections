@@ -1,0 +1,31 @@
+<ul class="contacts-page__list">
+  {% for section in contactSections %}
+    <li class="contacts-page__item">
+      <h2 class="section-title">{{ section.title }}</h2>
+
+      {% set divider = { space: true } %}
+      {% include "partials/divider/divider.njk" %}
+
+      {% if section.type == 'phone' %}
+        <a class="simple-box simple-box--blue" href="{{ headerPhone.href }}">
+          {{ headerPhone.display }}
+        </a>
+      {% else %}
+        <ul class="contacts-page__social">
+          {% for link in socialLinks %}
+            <li>
+              <a class="simple-box simple-box--blue contacts-page__social-link" href="{{ link.href }}">
+                {% set icon = {
+                  name: link.icon,
+                  class: "contacts-page__social-icon"
+                } %}
+                {% include "partials/icon/icon.njk" %}
+                <span>{{ link.label }}</span>
+              </a>
+            </li>
+          {% endfor %}
+        </ul>
+      {% endif %}
+    </li>
+  {% endfor %}
+</ul>

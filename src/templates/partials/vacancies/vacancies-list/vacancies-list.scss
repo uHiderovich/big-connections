@@ -1,0 +1,33 @@
+.vacancies-list {
+  display: flex;
+  flex-direction: column;
+  gap: 1px;
+
+  &__row {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+  }
+
+  &__cell {
+    height: 100%;
+    align-items: start !important;
+
+    &--head {
+      font-weight: 700;
+    }
+
+    ul {
+      list-style: disc;
+      padding-left: 20px;
+    }
+
+    li {
+      margin-bottom: 20px;
+
+      &::marker {
+        color: var(--color-dark-grey);
+      }
+    }
+  }
+}

@@ -1,0 +1,22 @@
+<div class="vacancies-page white-box">
+  <h1 class="vacancies-page__title">г. Биробиджан</h1>
+
+  {% include "partials/divider/divider.njk" %}
+
+  {% include "partials/vacancies/vacancies-table/vacancies-table.njk" %}
+
+  <div class="vacancies-page__feedback">
+    <p class="vacancies-page__feedback-text">
+      Своё резюме и контактные данные можете отправить нам на почту
+      с обязательным указанием должности.<br>
+      Мы свяжемся с вами после рассмотрения вашей кандидатуры.
+    </p>
+
+    {% set button = {
+      text: "Отправить",
+      variant: "orange",
+      class: "btn--198"
+    } %}
+    {% include "partials/button/button.njk" %}
+  </div>
+</div>

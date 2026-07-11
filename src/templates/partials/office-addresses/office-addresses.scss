@@ -1,0 +1,62 @@
+.office-addresses {
+  &__title {
+    margin-bottom: 30px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__row {
+    display: flex;
+    gap: 1px;
+    align-items: stretch;
+  }
+
+  &__entries {
+    display: flex;
+    flex-direction: column;
+    gap: 1px;
+  }
+
+  &__entry {
+    display: flex;
+    gap: 1px;
+    align-items: stretch;
+  }
+
+  &__cell {
+    &--region {
+      width: 260px !important;
+      align-self: stretch;
+    }
+
+    &--location {
+      width: 299px !important;
+    }
+
+    &--schedule {
+      width: 164px !important;
+      padding-inline: 14px !important;
+    }
+
+    &--phone {
+      justify-content: center;
+      width: 233px !important;
+    }
+  }
+
+  &__phone {
+    font-size: inherit;
+    line-height: inherit;
+  }
+}

@@ -1,0 +1,20 @@
+{% extends "layouts/page.njk" %}
+{% from "macros/breadcrumbs/breadcrumbs.njk" import breadcrumbs %}
+
+{% set title = "Деятельность — Большие Связи" %}
+{% set description = "Деятельность компании Большие Связи" %}
+
+{% block head %}
+{{ breadcrumbs([
+  { text: "О компании" },
+  { text: "Деятельность" }
+]) }}
+{% endblock %}
+
+{% block body %}
+  {% include "pages/activity/activity.njk" %}
+
+  <div class="compensation-margin">
+    {% include "partials/callback/callback.njk" %}
+  </div>
+{% endblock %}

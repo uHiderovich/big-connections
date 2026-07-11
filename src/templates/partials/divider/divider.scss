@@ -1,0 +1,9 @@
+.divider {
+  width: 100%;
+  height: 1px;
+  background: var(--color-stroke-blue);
+
+  &--space {
+    margin-block: 20px;
+  }
+}

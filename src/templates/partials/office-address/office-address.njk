@@ -1,0 +1,25 @@
+<section class="office-address">
+  <div class="container">
+    <div class="office-address__inner">
+      <h2 class="office-address__title">Адрес офиса</h2>
+
+      <div class="office-address__blocks">
+        <address class="simple-box simple-box--white office-address__block office-address__block--region">
+          {{ mainOfficeAddress.region }}
+        </address>
+
+        <address class="simple-box simple-box--white office-address__block office-address__block--location">
+          {{ mainOfficeAddress.addresses[0] | safe }}
+        </address>
+
+        <div class="simple-box simple-box--white office-address__block office-address__block--schedule">
+          {{ officeSchedule | safe }}
+        </div>
+
+        <div class="simple-box simple-box--white office-address__block office-address__block--phone">
+          <a class="office-address__phone" href="{{ officePhone.href }}">{{ officePhone.display }}</a>
+        </div>
+      </div>
+    </div>
+  </div>
+</section>

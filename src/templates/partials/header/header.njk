@@ -38,11 +38,11 @@
       {% from "macros/nav-dropdown/nav-dropdown.njk" import navDropdown %}
 
       {{ navDropdown("about", "О компании", [
-        "Деятельность",
-        "Вакансии",
-        "Инструкции",
-        "Новости",
-        "Контакты"
+        { text: "Деятельность", href: "/pages/activity.html" },
+        { text: "Вакансии", href: "/pages/vacancies.html" },
+        { text: "Инструкции", href: "/pages/instructions.html" },
+        { text: "Новости", href: "/pages/news.html" },
+        { text: "Контакты", href: "/pages/contacts.html" }
       ]) }}
 
       {{ navDropdown("tariffs", "Тарифы и услуги", [

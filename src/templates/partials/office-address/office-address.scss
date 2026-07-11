@@ -1,0 +1,52 @@
+.office-address {
+  &__inner {
+    width: 100%;
+    max-width: 960px;
+    margin-inline: auto;
+    padding-block: 100px;
+  }
+
+  &__title {
+    margin-bottom: 30px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  &__blocks {
+    display: flex;
+    justify-content: space-between;
+  }
+
+  &__block {
+    height: 77px !important;
+    font-style: normal;
+    font-weight: 400 !important;
+    flex-shrink: 0;
+
+    &--region {
+      width: 260px;
+    }
+
+    &--location {
+      width: 299px;
+    }
+
+    &--schedule {
+      width: 164px;
+      padding-inline: 15px !important;
+    }
+
+    &--phone {
+      justify-content: center;
+      width: 233px;
+      text-align: center;
+    }
+  }
+
+  &__phone {
+    font-size: inherit;
+    line-height: inherit;
+  }
+}

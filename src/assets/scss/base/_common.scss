@@ -14,3 +14,84 @@
   margin-inline: auto;
   padding-inline: 20px;
 }
+
+.page-content {
+  padding-top: 38px;
+  padding-bottom: 50px;
+}
+
+.compensation-margin {
+  margin-bottom: -50px;
+}
+
+.white-box {
+  border-radius: 20px;
+  padding: 50px 100px;
+  background: var(--color-white);
+  box-shadow: 24px 4px 36px 0px rgba(0, 100, 151, 0.1);
+}
+
+.glass-box {
+  position: relative;
+  z-index: 2;
+  border-radius: 20px;
+  background-color: rgba(255, 255, 255, 0.3);
+  padding: 50px 100px;
+
+  &::after {
+    content: '';
+    position: absolute;
+    inset: 0;
+    z-index: 1;
+    border: 2px solid var(--color-white);
+    border-radius: inherit;
+    pointer-events: none;
+  }
+
+  &::before {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    z-index: -1;
+    width: 1269px;
+    height: 241px;
+    border-radius: 50%;
+    transform: translate(-50%, -50%);
+    background: linear-gradient(90deg, #F8CBCA 0%, #7EBAE6 100%);
+    filter: blur(74px); /* не backdrop-filter, т.к. не поддерживается в Safari */
+    pointer-events: none;
+  }
+}
+
+.bordered-box {
+  display: flex;
+  align-items: center;
+  padding: 10px 20px;
+  border: 1px solid var(--color-stroke-blue);
+  border-radius: 10px;
+  font-size: 16px;
+  font-style: normal;
+  line-height: 1.2;
+}
+
+.simple-box {
+  display: inline-flex;
+  align-items: center;
+  min-height: 44px;
+  height: auto;
+  padding: 10px 20px;
+  border: 0;
+  border-radius: 10px;
+  font-weight: 700;
+  color: var(--color-dark-grey);
+  font-size: 16px;
+
+  &--blue {
+    background: var(--color-light-blue);
+  }
+
+  &--white {
+    background: var(--color-white);
+  }
+}

@@ -1,16 +1,13 @@
 .callback {
+  position: relative;
+  width: 560px;
+  margin-inline: auto;
   padding-block: 100px;
 
-  &__box {
-    position: relative;
-    width: 560px;
-    margin-inline: auto;
-
-    &--success .callback__result--success,
-    &--error .callback__result--error {
-      opacity: 1;
-      pointer-events: auto;
-    }
+  &--success .callback__result--success,
+  &--error .callback__result--error {
+    opacity: 1;
+    pointer-events: auto;
   }
 
   &__title {

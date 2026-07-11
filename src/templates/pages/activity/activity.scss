@@ -1,0 +1,28 @@
+.activity-page {
+  &__section:not(:last-child) {
+    margin-bottom: 50px;
+  }
+
+  &__title {
+    margin-bottom: 30px;
+    font-family: 'Ubuntu', sans-serif;
+    font-size: 26px;
+    font-weight: 700;
+    line-height: 1;
+  }
+
+  &__text {
+    max-width: 560px;
+    font-size: 16px;
+    line-height: 1.2;
+  }
+
+  &__benefits {
+    display: grid;
+    grid-template-columns: repeat(3, 1fr);
+    gap: 20px 40px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+}

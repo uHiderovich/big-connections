@@ -1,0 +1,23 @@
+.instructions-page {
+  &__list {
+    display: flex;
+    flex-direction: column;
+    gap: 50px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__links {
+    display: flex;
+    flex-wrap: wrap;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__link {
+    text-decoration: none;
+  }
+}

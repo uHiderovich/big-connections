@@ -1,0 +1,10 @@
+<div class="office-addresses">
+  <h2 class="office-addresses__title">Адреса офисов</h2>
+
+  <ul class="office-addresses__list">
+    {% for row in officeAddressRows %}
+      {% set officeAddressRow = row %}
+      {% include "partials/office-address-row/office-address-row.njk" %}
+    {% endfor %}
+  </ul>
+</div>

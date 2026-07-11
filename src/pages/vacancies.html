@@ -1,0 +1,16 @@
+{% extends "layouts/page.njk" %}
+{% from "macros/breadcrumbs/breadcrumbs.njk" import breadcrumbs %}
+
+{% set title = "Вакансии — Большие Связи" %}
+{% set description = "Вакансии компании Большие Связи" %}
+
+{% block head %}
+  {{ breadcrumbs([
+    { text: "О компании" },
+    { text: "Вакансии" }
+  ]) }}
+{% endblock %}
+
+{% block body %}
+  {% include "pages/vacancies/vacancies.njk" %}
+{% endblock %}

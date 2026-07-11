@@ -1,0 +1,19 @@
+.vacancies-table {
+  padding-block: 30px;
+
+  &__header {
+    display: grid;
+    grid-template-columns: repeat(4, 1fr);
+    gap: 1px;
+    margin-bottom: 1px;
+  }
+
+  &__cell {
+    display: flex;
+    min-height: 58px;
+
+    &--head {
+      font-weight: 700;
+    }
+  }
+}
