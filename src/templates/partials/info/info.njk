@@ -6,7 +6,16 @@
     text: "1 неделя бесплатного интернета",
     image: "/src/assets/images/gift.png",
     width: 200,
-    height: 200
+    height: 200,
+    hintTooltip: {
+      title: "Как получить подарок",
+      steps: [
+        "Оставить отзыв о нас в 2ГИС или в Яндекс Картах;",
+        "Сделайте скриншот опубликованного отзыва;",
+        "Отправьте этот скриншот нам в ЛС группы ВК: <a href=\"https://vk.com/example\" target=\"_blank\" rel=\"noopener noreferrer\">https://vk.com/example</a>."
+      ],
+      note: "Ваше мнение помогает нам становиться лучше."
+    }
   },
   {
     title: "Приведи друга",
@@ -49,8 +58,14 @@
 
           <ul class="info__promo-grid">
             {% for card in promoCards %}
-              <li class="info__promo-card">
-                <h3 class="info__promo-title">{{ card.title }}</h3>
+              <li class="info__promo-card{% if card.hintTooltip %} info__promo-card--with-hint-tooltip{% endif %}">
+                <div class="info__promo-title-wrap">
+                  <h3 class="info__promo-title">{{ card.title }}</h3>
+                  {% if card.hintTooltip %}
+                    {% set hintTooltip = card.hintTooltip %}
+                    {% include "partials/hint-tooltip/hint-tooltip.njk" %}
+                  {% endif %}
+                </div>
                 <p class="info__promo-text">{{ card.text | safe }}</p>
                 <img
                   class="info__promo-image"

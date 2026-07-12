@@ -1,8 +1,8 @@
 import JustValidate from 'just-validate';
 import IMask from 'imask';
 
-const validClass = 'callback__field--valid';
-const invalidClass = 'callback__field--invalid';
+const validClass = 'callback-form__field--valid';
+const invalidClass = 'callback-form__field--invalid';
 
 const phonePatterns = [
   /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/,
@@ -24,13 +24,13 @@ function updateFieldWithoutRulesState(field) {
   field.classList.remove(validClass);
 }
 
-const boxStateClasses = ['callback__box--success', 'callback__box--error'];
+const boxStateClasses = ['callback--success', 'callback--error'];
 
 function setBoxState(box, state) {
   box.classList.remove(...boxStateClasses);
 
   if (state) {
-    box.classList.add(`callback__box--${state}`);
+    box.classList.add(`callback--${state}`);
   }
 }
 
@@ -103,7 +103,7 @@ export function init() {
     errorFieldCssClass: invalidClass,
     successFieldCssClass: validClass,
     errorLabelStyle: null,
-    errorLabelCssClass: ['callback__error'],
+    errorLabelCssClass: ['callback-form__error'],
     submitFormAutomatically: false,
   });
 

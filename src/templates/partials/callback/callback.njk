@@ -4,115 +4,41 @@
       Закажите звонок для связи с вами
     </h2>
 
-    <form
-      class="callback__form js-callback-form"
-      action="#"
-      method="post"
-      novalidate
-    >
-      <div class="callback__fields">
-        <div class="callback__field-wrap">
-          <input
-            class="callback__field"
-            type="text"
-            name="name"
-            placeholder="Ваше имя"
-            autocomplete="name"
-          >
-        </div>
+    {% include "partials/callback/form/form.njk" %}
 
-        <div class="callback__field-wrap">
-          <input
-            class="callback__field"
-            type="tel"
-            name="phone"
-            placeholder="Ваш телефон *"
-            autocomplete="tel"
-            inputmode="tel"
-            data-validate="phone"
-            data-required
-          >
-        </div>
-
-        <div class="callback__field-wrap">
-          <input
-            class="callback__field"
-            type="text"
-            name="address"
-            placeholder="Ваш адрес"
-            autocomplete="street-address"
-          >
-        </div>
-      </div>
-
-      <div class="callback__footer">
-        <p class="callback__note">
-          Нажимая кнопку «Отправить», вы соглашаетесь с
-          <a class="callback__link" href="{{ notFoundPageUrl }}">Условиями обработки персональных данных</a><br>
-          и принимаете
-          <a class="callback__link" href="{{ notFoundPageUrl }}">Политику конфиденциальности</a>.
-        </p>
-
-        {% set button = {
-          text: "Отправить",
-          type: "submit",
-          variant: "orange",
-          class: "btn--198 callback__submit"
+    <div class="callback__result callback__result--success">
+      <button
+        type="button"
+        class="callback__result-close js-callback-close"
+        aria-label="Закрыть"
+      >
+        {% set icon = {
+          name: "close",
+          class: "callback__result-close-icon"
         } %}
-        {% include "partials/button/button.njk" %}
-      </div>
-    </form>
+        {% include "partials/icon/icon.njk" %}
+      </button>
+
+      {% set isSuccess = true %}
+      {% include "partials/callback/result/result.njk" %}
+    </div>
+
+    <div class="callback__result callback__result--error">
+      <button
+        type="button"
+        class="callback__result-close js-callback-close"
+        aria-label="Закрыть"
+      >
+        {% set icon = {
+          name: "close",
+          class: "callback__result-close-icon"
+        } %}
+        {% include "partials/icon/icon.njk" %}
+      </button>
+
+      {% set isSuccess = false %}
+      {% include "partials/callback/result/result.njk" %}
+    </div>
   </div>
 
-  <div class="callback__result callback__result--success">
-    <button
-      type="button"
-      class="callback__result-close js-callback-close"
-      aria-label="Закрыть"
-    >
-      {% set icon = {
-        name: "close",
-        class: "callback__result-close-icon"
-      } %}
-      {% include "partials/icon/icon.njk" %}
-    </button>
-
-    <p class="callback__result-text">
-      Отлично, заявка на обратный звонок оформлена!<br>
-      Скоро наш специалист позвонит вам, чтобы помочь.
-    </p>
-    <img
-      class="callback__result-icon"
-      src="/src/assets/images/done.svg"
-      width="50"
-      height="50"
-      aria-hidden="true"
-    >
-  </div>
-
-  <div class="callback__result callback__result--error">
-    <button
-      type="button"
-      class="callback__result-close js-callback-close"
-      aria-label="Закрыть"
-    >
-      {% set icon = {
-        name: "close",
-        class: "callback__result-close-icon"
-      } %}
-      {% include "partials/icon/icon.njk" %}
-    </button>
-
-    <p class="callback__result-text">
-      Не удалось обработать вашу заявку.<br>
-      Попробуйте ещё раз — мы здесь, чтобы помочь!
-    </p>
-    <img
-      class="callback__result-icon"
-      src="/src/assets/images/error.svg"
-      width="50"
-      height="50"
-      aria-hidden="true"
-    >
-  </div>
 </div>

@@ -43,14 +43,32 @@
     background: var(--color-white);
     line-height: 1.2;
     overflow: hidden;
+
+    &--with-hint-tooltip {
+      overflow: visible;
+
+      &:hover {
+        z-index: 2;
+      }
+    }
+  }
+
+  &__promo-title-wrap {
+    display: flex;
+    align-items: center;
+    flex-wrap: nowrap;
+    gap: 10px;
+    max-width: 55%;
+    margin-bottom: 10px;
   }
 
   &__promo-title {
-    margin: 0 0 10px;
-    max-width: 55%;
+    margin: 0;
+    max-width: none;
     font-size: inherit;
     font-weight: 700;
     line-height: 1.2;
+    white-space: nowrap;
   }
 
   &__promo-text {

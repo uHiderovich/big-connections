@@ -1,0 +1,18 @@
+<div class="callback-result">
+  <p class="callback-result__text">
+    {% if isSuccess %}
+      Отлично, заявка на обратный звонок оформлена!<br>
+      Скоро наш специалист позвонит вам, чтобы помочь.
+    {% else %}
+      Не удалось обработать вашу заявку.<br>
+      Попробуйте ещё раз — мы здесь, чтобы помочь!
+    {% endif %}
+  </p>
+  <img
+    class="callback-result__icon"
+    src="{% if isSuccess %}/src/assets/images/done.svg{% else %}/src/assets/images/error.svg{% endif %}"
+    width="50"
+    height="50"
+    aria-hidden="true"
+  >
+</div>

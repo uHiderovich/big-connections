@@ -1,0 +1,58 @@
+<form
+  class="callback-form js-callback-form"
+  action="#"
+  method="post"
+  novalidate
+>
+  <div class="callback-form__fields">
+    <div class="callback-form__field-wrap">
+      <input
+        class="callback-form__field"
+        type="text"
+        name="name"
+        placeholder="Ваше имя"
+        autocomplete="name"
+      >
+    </div>
+
+    <div class="callback-form__field-wrap">
+      <input
+        class="callback-form__field"
+        type="tel"
+        name="phone"
+        placeholder="Ваш телефон *"
+        autocomplete="tel"
+        inputmode="tel"
+        data-validate="phone"
+        data-required
+      >
+    </div>
+
+    <div class="callback-form__field-wrap">
+      <input
+        class="callback-form__field"
+        type="text"
+        name="address"
+        placeholder="Ваш адрес"
+        autocomplete="street-address"
+      >
+    </div>
+  </div>
+
+  <div class="callback-form__footer">
+    <p class="callback-form__note">
+      Нажимая кнопку «Отправить», вы соглашаетесь с
+      <a class="callback-form__link" href="{{ notFoundPageUrl }}">Условиями обработки персональных данных</a><br>
+      и принимаете
+      <a class="callback-form__link" href="{{ notFoundPageUrl }}">Политику конфиденциальности</a>.
+    </p>
+
+    {% set button = {
+      text: "Отправить",
+      type: "submit",
+      variant: "orange",
+      class: "btn--198 callback-form__submit"
+    } %}
+    {% include "partials/button/button.njk" %}
+  </div>
+</form>

@@ -1,0 +1,25 @@
+.callback-result {
+  inset: 0;
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+  justify-content: center;
+  width: 100%;
+  height: 100%;
+  background: var(--color-white);
+  border-radius: 10px;
+  padding: 50px 0;
+}
+
+.callback-result__text {
+  margin: 0;
+  font-size: 20px;
+  line-height: 1.2;
+  text-align: center;
+}
+
+.callback-result__icon {
+  width: 50px;
+  height: 50px;
+  margin-top: 20px;
+}

@@ -9,7 +9,8 @@ const overlayOpenClass = 'header__nav-overlay--open';
 const headerNavOpenClass = 'header--nav-open';
 
 const updateHeaderHeight = (header) => {
-  header.style.setProperty('--header-height', `${header.getBoundingClientRect().height}px`);
+  const { bottom } = header.getBoundingClientRect();
+  header.style.setProperty('--header-height', `${Math.max(0, bottom)}px`);
 };
 
 const updateListOffset = (dropdown) => {
@@ -51,6 +52,7 @@ export function init() {
 
   refreshLayout();
   window.addEventListener('resize', refreshLayout);
+  window.addEventListener('scroll', refreshLayout, { passive: true });
 
   const closeAll = () => {
     dropdowns.forEach((dropdown) => {

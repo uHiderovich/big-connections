@@ -1,0 +1,27 @@
+<div class="hint-tooltip">
+  <button class="hint-tooltip__trigger" type="button" aria-label="Подсказка">
+    {% set icon = {
+      name: "hint",
+      class: "hint-tooltip__icon"
+    } %}
+    {% include "partials/icon/icon.njk" %}
+  </button>
+
+  <div class="hint-tooltip__popup" role="tooltip">
+    {% if hintTooltip.title %}
+      <p class="hint-tooltip__popup-title">{{ hintTooltip.title }}</p>
+    {% endif %}
+
+    {% if hintTooltip.steps and hintTooltip.steps.length %}
+      <ol class="hint-tooltip__popup-list">
+        {% for step in hintTooltip.steps %}
+          <li class="hint-tooltip__popup-item">{{ step | safe }}</li>
+        {% endfor %}
+      </ol>
+    {% endif %}
+
+    {% if hintTooltip.note %}
+      <p class="hint-tooltip__popup-note">{{ hintTooltip.note | safe }}</p>
+    {% endif %}
+  </div>
+</div>
