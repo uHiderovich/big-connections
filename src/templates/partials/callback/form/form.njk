@@ -5,38 +5,24 @@
   novalidate
 >
   <div class="callback-form__fields">
-    <div class="callback-form__field-wrap">
-      <input
-        class="callback-form__field"
-        type="text"
-        name="name"
-        placeholder="Ваше имя"
-        autocomplete="name"
-      >
-    </div>
-
-    <div class="callback-form__field-wrap">
-      <input
-        class="callback-form__field"
-        type="tel"
-        name="phone"
-        placeholder="Ваш телефон *"
-        autocomplete="tel"
-        inputmode="tel"
-        data-validate="phone"
-        data-required
-      >
-    </div>
-
-    <div class="callback-form__field-wrap">
-      <input
-        class="callback-form__field"
-        type="text"
-        name="address"
-        placeholder="Ваш адрес"
-        autocomplete="street-address"
-      >
-    </div>
+    {% for field in callbackFormFields | default(callbackSectionFormFields) %}
+      <div class="callback-form__field-wrap">
+        {% if field.type == 'select' %}
+          {% include "partials/select/select.njk" %}
+        {% else %}
+          <input
+            class="callback-form__field"
+            type="{{ field.type }}"
+            name="{{ field.name }}"
+            placeholder="{{ field.placeholder }}"
+            {% if field.autocomplete %} autocomplete="{{ field.autocomplete }}"{% endif %}
+            {% if field.inputmode %} inputmode="{{ field.inputmode }}"{% endif %}
+            {% if field.validate %} data-validate="{{ field.validate }}"{% endif %}
+            {% if field.required %} data-required{% endif %}
+          >
+        {% endif %}
+      </div>
+    {% endfor %}
   </div>
 
   <div class="callback-form__footer">

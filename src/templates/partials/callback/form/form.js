@@ -3,6 +3,7 @@ import IMask from 'imask';
 
 const validClass = 'callback-form__field--valid';
 const invalidClass = 'callback-form__field--invalid';
+const boxStateClasses = ['callback--success', 'callback--error'];
 
 const phonePatterns = [
   /^\+7 \(\d{3}\) \d{3}-\d{2}-\d{2}$/,
@@ -23,8 +24,6 @@ function updateFieldWithoutRulesState(field) {
 
   field.classList.remove(validClass);
 }
-
-const boxStateClasses = ['callback--success', 'callback--error'];
 
 function setBoxState(box, state) {
   box.classList.remove(...boxStateClasses);
@@ -67,15 +66,11 @@ async function sendForm(form) {
   }
 }
 
-export function init() {
-  const formSelector = '.js-callback-form';
+function initCallbackBox(box) {
+  const form = box.querySelector('.js-callback-form');
 
-  const box = document.querySelector('.js-callback-box');
-  const form = document.querySelector(formSelector);
-  const phone = form?.querySelector('[data-validate="phone"]');
-
-  if (!box || !form) {
-    return;
+  if (!form) {
+    return null;
   }
 
   const showFormView = () => {
@@ -90,16 +85,16 @@ export function init() {
     setBoxState(box, 'error');
   };
 
-  if (phone) {
+  form.querySelectorAll('[data-validate="phone"]').forEach((phone) => {
     IMask(phone, {
       mask: [
         '+{7} (000) 000-00-00',
         '8 (000) 000-00-00',
       ],
     });
-  }
+  });
 
-  const validation = new JustValidate(formSelector, {
+  const validation = new JustValidate(form, {
     errorFieldCssClass: invalidClass,
     successFieldCssClass: validClass,
     errorLabelStyle: null,
@@ -107,22 +102,25 @@ export function init() {
     submitFormAutomatically: false,
   });
 
-  validation.addField('[name="phone"]', [
-    {
-      rule: 'required',
-      errorMessage: 'Поле обязательно для заполнения',
-    },
-    {
-      validator: isValidPhonePattern,
-      errorMessage: 'Неправильный формат номера телефона',
-    },
-  ]);
+  form.querySelectorAll('[data-required]').forEach((field) => {
+    const rules = [
+      {
+        rule: 'required',
+        errorMessage: 'Поле обязательно для заполнения',
+      },
+    ];
 
-  const fieldsWithoutRules = form.querySelectorAll(
-    'input:not([data-required]):not([data-validate])',
-  );
+    if (field.dataset.validate === 'phone') {
+      rules.push({
+        validator: isValidPhonePattern,
+        errorMessage: 'Неправильный формат номера телефона',
+      });
+    }
 
-  fieldsWithoutRules.forEach((field) => {
+    validation.addField(`[name="${field.name}"]`, rules);
+  });
+
+  form.querySelectorAll('input:not([data-required]):not([data-validate])').forEach((field) => {
     field.addEventListener('input', () => {
       updateFieldWithoutRulesState(field);
     });
@@ -148,4 +146,18 @@ export function init() {
       validation.unlockForm();
     }
   });
+
+  return {
+    resetView: showFormView,
+    form,
+    validation,
+  };
 }
+
+export function init() {
+  document.querySelectorAll('.js-callback-box').forEach((box) => {
+    initCallbackBox(box);
+  });
+}
+
+export { initCallbackBox, setBoxState };

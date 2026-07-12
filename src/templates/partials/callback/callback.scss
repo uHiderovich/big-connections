@@ -16,6 +16,10 @@
 
   &__form-view {
     position: relative;
+
+    &--position-unset {
+      position: unset;
+    }
   }
 
   &__result {

@@ -68,9 +68,9 @@
 
       {% set button ={
           text: "Подключиться",
-          href: notFoundPageUrl,
+          type: "button",
           variant: "orange",
-          class: "btn--198"
+          class: "btn--198 js-callback-modal-open"
         }
       %}
       {% include "partials/button/button.njk" %}

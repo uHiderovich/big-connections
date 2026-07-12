@@ -1,4 +1,5 @@
 import { existsSync, mkdirSync, readdirSync, renameSync, rmSync, statSync } from 'node:fs';
+import { callbackModalFormFields, callbackSectionFormFields } from './src/data/callback-form-fields.js';
 import { notFoundPageUrl } from './src/data/routes.js';
 import { cityPanelColumns, regions } from './src/data/regions.js';
 import {
@@ -183,6 +184,8 @@ function nunjucksHtml() {
   });
 
   env.addGlobal('notFoundPageUrl', notFoundPageUrl);
+  env.addGlobal('callbackSectionFormFields', callbackSectionFormFields);
+  env.addGlobal('callbackModalFormFields', callbackModalFormFields);
   env.addGlobal('regions', regions);
   env.addGlobal('cityPanelColumns', cityPanelColumns);
   env.addGlobal('officeSchedule', officeSchedule);

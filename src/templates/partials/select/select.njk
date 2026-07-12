@@ -1,0 +1,10 @@
+<select
+  class="select callback-form__field"
+  name="{{ field.name }}"
+  aria-label="{{ field.placeholder }}"
+>
+  <option value="" selected disabled hidden>{{ field.placeholder }}</option>
+  {% for option in field.options %}
+    <option value="{{ option.value }}">{{ option.label }}</option>
+  {% endfor %}
+</select>

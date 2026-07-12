@@ -4,41 +4,25 @@
       Закажите звонок для связи с вами
     </h2>
 
+    {% set callbackFormFields = callbackSectionFormFields %}
     {% include "partials/callback/form/form.njk" %}
 
     <div class="callback__result callback__result--success">
-      <button
-        type="button"
-        class="callback__result-close js-callback-close"
-        aria-label="Закрыть"
-      >
-        {% set icon = {
-          name: "close",
-          class: "callback__result-close-icon"
-        } %}
-        {% include "partials/icon/icon.njk" %}
-      </button>
+      {% set closeClass = "callback__result-close js-callback-close" %}
+      {% set closeIconClass = "callback__result-close-icon" %}
+      {% include "partials/callback/close/close.njk" %}
 
       {% set isSuccess = true %}
       {% include "partials/callback/result/result.njk" %}
     </div>
 
     <div class="callback__result callback__result--error">
-      <button
-        type="button"
-        class="callback__result-close js-callback-close"
-        aria-label="Закрыть"
-      >
-        {% set icon = {
-          name: "close",
-          class: "callback__result-close-icon"
-        } %}
-        {% include "partials/icon/icon.njk" %}
-      </button>
+      {% set closeClass = "callback__result-close js-callback-close" %}
+      {% set closeIconClass = "callback__result-close-icon" %}
+      {% include "partials/callback/close/close.njk" %}
 
       {% set isSuccess = false %}
       {% include "partials/callback/result/result.njk" %}
     </div>
   </div>
-
 </div>

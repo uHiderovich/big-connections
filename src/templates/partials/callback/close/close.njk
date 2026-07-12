@@ -1,0 +1,11 @@
+<button
+  type="button"
+  class="{{ closeClass }}"
+  aria-label="Закрыть"
+>
+  {% set icon = {
+    name: "close",
+    class: closeIconClass
+  } %}
+  {% include "partials/icon/icon.njk" %}
+</button>
