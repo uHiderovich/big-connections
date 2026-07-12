@@ -1,0 +1,21 @@
+{% from "macros/breadcrumbs/breadcrumbs.njk" import breadcrumbs %}
+
+<section class="tariff-page">
+  <div class="container">
+    {{ breadcrumbs([
+      { text: "Тарифы и услуги" },
+      { text: "Телевидение" }
+    ]) }}
+
+    <h1 class="section-title tariff-page__title">
+      Телевидение / г. Черемхово
+    </h1>
+
+    <ul class="tariff-page__grid">
+      {% for item in televisionTariffs %}
+        {% set tariff = item %}
+        {% include "partials/tariff-card/tariff-card.njk" %}
+      {% endfor %}
+    </ul>
+  </div>
+</section>

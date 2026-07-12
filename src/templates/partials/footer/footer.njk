@@ -10,7 +10,7 @@
               <a class="footer__link" href="/pages/activity.html">Деятельность</a>
             </li>
             <li>
-              <a class="footer__link" href="#">Документы</a>
+              <a class="footer__link" href="{{ notFoundPageUrl }}">Документы</a>
             </li>
             <li>
               <a class="footer__link" href="/pages/vacancies.html">Вакансии</a>
@@ -25,7 +25,7 @@
 
           {% set button ={
               text: "Оплатить услуги",
-              href: "#",
+              href: notFoundPageUrl,
               variant: "orange",
               class: "footer__pay"
             }
@@ -38,25 +38,25 @@
 
           <ul class="footer__menu">
             <li>
-              <a class="footer__link" href="#">Интернет для города</a>
+              <a class="footer__link" href="{{ notFoundPageUrl }}">Интернет для города</a>
             </li>
             <li>
-              <a class="footer__link" href="#">Интернет для частного сектора</a>
+              <a class="footer__link" href="/pages/private-internet.html">Интернет для частного сектора</a>
             </li>
             <li>
-              <a class="footer__link" href="#">Домофония</a>
+              <a class="footer__link" href="{{ notFoundPageUrl }}">Домофония</a>
             </li>
             <li>
-              <a class="footer__link" href="#">Видеонаблюдение</a>
+              <a class="footer__link" href="/pages/home-video-surveillance.html">Видеонаблюдение</a>
             </li>
             <li>
-              <a class="footer__link" href="#">Цифровое ТВ</a>
+              <a class="footer__link" href="/pages/television.html">Цифровое ТВ</a>
             </li>
             <li>
-              <a class="footer__link" href="#">Рассрочка</a>
+              <a class="footer__link" href="{{ notFoundPageUrl }}">Рассрочка</a>
             </li>
             <li>
-              <a class="footer__link" href="#">Услуги для бизнеса</a>
+              <a class="footer__link" href="{{ notFoundPageUrl }}">Услуги для бизнеса</a>
             </li>
           </ul>
         </div>
@@ -66,10 +66,10 @@
 
           <ul class="footer__menu">
             <li>
-              <a class="footer__link" href="#">Обращение в техподдержку</a>
+              <a class="footer__link" href="{{ notFoundPageUrl }}">Обращение в техподдержку</a>
             </li>
             <li>
-              <a class="footer__link" href="#">Заявка на подключение</a>
+              <a class="footer__link" href="{{ notFoundPageUrl }}">Заявка на подключение</a>
             </li>
           </ul>
         </div>
@@ -79,22 +79,22 @@
 
           <ul class="footer__menu">
             <li>
-              <a class="footer__link" href="#">Политика конфиденциальности</a>
+              <a class="footer__link" href="{{ notFoundPageUrl }}">Политика конфиденциальности</a>
             </li>
             <li>
-              <a class="footer__link" href="#">Пользовательское соглашение</a>
+              <a class="footer__link" href="{{ notFoundPageUrl }}">Пользовательское соглашение</a>
             </li>
             <li>
-              <a class="footer__link" href="#">Согласие на обработку персональных данных</a>
+              <a class="footer__link" href="{{ notFoundPageUrl }}">Согласие на обработку персональных данных</a>
             </li>
             <li>
-              <a class="footer__link" href="#">Правила оказания услуг связи</a>
+              <a class="footer__link" href="{{ notFoundPageUrl }}">Правила оказания услуг связи</a>
             </li>
             <li>
-              <a class="footer__link" href="#">Договоры и согласия</a>
+              <a class="footer__link" href="{{ notFoundPageUrl }}">Договоры и согласия</a>
             </li>
             <li>
-              <a class="footer__link" href="#">Лицензии</a>
+              <a class="footer__link" href="{{ notFoundPageUrl }}">Лицензии</a>
             </li>
           </ul>
         </div>
@@ -104,7 +104,7 @@
 
           <ul class="footer__social">
             <li>
-              <a class="footer__social-link" href="#" aria-label="ВКонтакте">
+              <a class="footer__social-link" href="{{ notFoundPageUrl }}" aria-label="ВКонтакте">
                 {% set icon ={
                     name: "vk",
                     class: "footer__social-icon"
@@ -114,7 +114,7 @@
               </a>
             </li>
             <li>
-              <a class="footer__social-link" href="#" aria-label="Max">
+              <a class="footer__social-link" href="{{ notFoundPageUrl }}" aria-label="Max">
                 {% set icon ={
                     name: "max",
                     class: "footer__social-icon"
@@ -124,7 +124,7 @@
               </a>
             </li>
             <li>
-              <a class="footer__social-link" href="#" aria-label="Telegram">
+              <a class="footer__social-link" href="{{ notFoundPageUrl }}" aria-label="Telegram">
                 {% set icon ={
                     name: "tg",
                     class: "footer__social-icon"

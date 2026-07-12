@@ -1,0 +1,63 @@
+.tariff-card {
+  display: flex;
+  flex-direction: column;
+  height: 100%;
+  padding: 30px 20px 20px;
+  border-radius: 20px;
+  background: var(--color-white);
+
+  &__title {
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 1.2;
+
+    &--big {
+      font-size: 26px;
+    }
+  }
+
+  &__features {
+    min-height: 78px;
+    margin-top: 10px;
+    padding-block: 10px;
+    border-top: 1px solid var(--color-stroke-blue);
+    border-bottom: 1px solid var(--color-stroke-blue);
+  }
+
+  &__features-list {
+    display: flex;
+    flex-direction: column;
+    gap: 10px;
+    margin: 0;
+    padding: 0;
+    list-style: none;
+  }
+
+  &__feature {
+    display: flex;
+    gap: 10px;
+  }
+
+  &__feature-icon {
+    width: 24px;
+    height: 24px;
+    flex-shrink: 0;
+    color: var(--color-main-blue);
+  }
+
+  &__feature-text {
+    padding-top: 3px;
+    font-size: 16px;
+    line-height: 1.2;
+  }
+
+  &__description {
+    margin-block: 20px;
+    font-size: 16px;
+    line-height: 1.2;
+  }
+
+  &__footer {
+    margin-top: auto;
+  }
+}

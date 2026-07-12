@@ -1,0 +1,35 @@
+<li class="tariff-card">
+  <h3 class="tariff-card__title{% if titleBig %} tariff-card__title--big{% endif %}">
+    {{ tariff.title }}
+  </h3>
+
+  {% if tariff.features and tariff.features.length %}
+    <div class="tariff-card__features">
+      <ul class="tariff-card__features-list">
+        {% for feature in tariff.features %}
+          <li class="tariff-card__feature">
+            {% set icon = {
+              name: feature.icon,
+              class: "tariff-card__feature-icon"
+            } %}
+            {% include "partials/icon/icon.njk" %}
+            <span class="tariff-card__feature-text">{{ feature.text }}</span>
+          </li>
+        {% endfor %}
+      </ul>
+    </div>
+  {% endif %}
+
+  {% if tariff.description %}
+    <p class="tariff-card__description">{{ tariff.description | safe }}</p>
+  {% endif %}
+
+  <div class="tariff-card__footer">
+    {% set button = {
+      text: tariff.buttonText,
+      variant: "orange",
+      class: "btn--full"
+    } %}
+    {% include "partials/button/button.njk" %}
+  </div>
+</li>

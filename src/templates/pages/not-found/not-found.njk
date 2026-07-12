@@ -1,0 +1,33 @@
+<div class="not-found-page">
+  <section class="not-found-page__hero">
+    <div class="not-found-page__hero-content">
+      <h1 class="not-found-page__text">
+        Упс!<br>
+        Просим прощения,<br>
+        страница не найдена
+      </h1>
+      <img
+        class="not-found-page__image"
+        src="/src/assets/images/404.png"
+        width="274"
+        height="182"
+        alt=""
+      >
+    </div>
+  </section>
+
+  <section class="not-found-page__tariffs">
+    <div class="container">
+      <h2 class="section-title tariff-page__title">
+        Тарифы для квартир / г. Черемхово
+      </h2>
+
+      <ul class="tariff-page__grid">
+        {% for item in privateInternetTariffs %}
+          {% set tariff = item %}
+          {% include "partials/tariff-card/tariff-card.njk" %}
+        {% endfor %}
+      </ul>
+    </div>
+  </section>
+</div>

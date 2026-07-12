@@ -1,11 +1,15 @@
 import { existsSync, mkdirSync, readdirSync, renameSync, rmSync, statSync } from 'node:fs';
+import { notFoundPageUrl } from './src/data/routes.js';
 import { cityPanelColumns, regions } from './src/data/regions.js';
 import {
   contactSections,
   headerPhone,
   socialLinks,
 } from './src/data/contacts.js';
+import { televisionTariffs } from './src/data/television-tariffs.js';
+import { homeVideoSurveillanceTariffs } from './src/data/home-video-surveillance-tariffs.js';
 import { instructionSections } from './src/data/instructions.js';
+import { privateInternetTariffs } from './src/data/private-internet-tariffs.js';
 import {
   mainOfficeAddress,
   officeAddressRows,
@@ -159,6 +163,8 @@ function mpaDevRoutes() {
         const url = req.url?.split('?')[0];
         if (url === '/' || url === '/index.html') {
           req.url = '/src/pages/index.html';
+        } else if (url === '/404' || url === '/404.html') {
+          req.url = '/src/pages/404.html';
         } else if (url?.startsWith('/pages/') && url.endsWith('.html')) {
           req.url = `/src/pages/${url.slice('/pages/'.length)}`;
         }
@@ -176,6 +182,7 @@ function nunjucksHtml() {
     lstripBlocks: true,
   });
 
+  env.addGlobal('notFoundPageUrl', notFoundPageUrl);
   env.addGlobal('regions', regions);
   env.addGlobal('cityPanelColumns', cityPanelColumns);
   env.addGlobal('officeSchedule', officeSchedule);
@@ -186,6 +193,9 @@ function nunjucksHtml() {
   env.addGlobal('socialLinks', socialLinks);
   env.addGlobal('contactSections', contactSections);
   env.addGlobal('instructionSections', instructionSections);
+  env.addGlobal('privateInternetTariffs', privateInternetTariffs);
+  env.addGlobal('homeVideoSurveillanceTariffs', homeVideoSurveillanceTariffs);
+  env.addGlobal('televisionTariffs', televisionTariffs);
 
   return {
     name: 'nunjucks-html',

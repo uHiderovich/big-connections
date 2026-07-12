@@ -16,7 +16,7 @@
         <span class="city-select__text">Черемхово</span>
       </button>
 
-      <a class="header__support-link" href="#">Техподдержка</a>
+      <a class="header__support-link" href="{{ notFoundPageUrl }}">Техподдержка</a>
       <a class="header__phone" href="tel:+78004441109">+7 800 444 11 09</a>
     </div>
 
@@ -47,10 +47,11 @@
 
       {{ navDropdown("tariffs", "Тарифы и услуги", [
         "Интернет в много-квартирный дом",
-        "Интернет для частного сектора",
+        { text: "Интернет для частного сектора", href: "/pages/private-internet.html" },
         "Домофония",
-        "Видеонаблюдение",
-        "Цифровое ТВ",
+        { text: "Видеонаблюдение", href: "/pages/home-video-surveillance.html" },
+        { text: "Радио", href: notFoundPageUrl },
+        { text: "Телевидение", href: "/pages/television.html" },
         "Рассрочка"
       ]) }}
     </nav>
@@ -58,7 +59,7 @@
     <div class="header__actions">
       {% set button ={
           text: "Пополнить баланс",
-          href: "#",
+          href: notFoundPageUrl,
           variant: "blue",
           class: "btn--198"
         }
@@ -67,14 +68,14 @@
 
       {% set button ={
           text: "Подключиться",
-          href: "#",
+          href: notFoundPageUrl,
           variant: "orange",
           class: "btn--198"
         }
       %}
       {% include "partials/button/button.njk" %}
 
-      <a class="profile-btn" href="#" aria-label="Профиль">
+      <a class="profile-btn" href="{{ notFoundPageUrl }}" aria-label="Профиль">
         {% set icon ={
             name: "profile",
             class: "profile-btn__icon"

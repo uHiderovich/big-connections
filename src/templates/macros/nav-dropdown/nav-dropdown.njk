@@ -20,7 +20,7 @@
           <li>
             <a
               class="nav-dropdown__link"
-              href="{{ item.href if item.href is defined else '#' }}"
+              href="{{ item.href if item.href is defined else notFoundPageUrl }}"
             >{{ item.text if item.text is defined else item }}</a>
           </li>
         {% endfor %}
