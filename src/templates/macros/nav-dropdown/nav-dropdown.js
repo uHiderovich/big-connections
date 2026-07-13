@@ -1,4 +1,4 @@
-import { setScrollLocked } from '../../../js/modules/scroll-lock';
+import { setScrollLocked } from '../../../js/helpers/scroll-lock';
 
 let closeNavDropdowns = () => {};
 

@@ -10,7 +10,7 @@
     <div class="callback__result callback__result--success">
       {% set closeClass = "callback__result-close js-callback-close" %}
       {% set closeIconClass = "callback__result-close-icon" %}
-      {% include "partials/callback/close/close.njk" %}
+      {% include "partials/close/close.njk" %}
 
       {% set isSuccess = true %}
       {% include "partials/callback/result/result.njk" %}
@@ -19,7 +19,7 @@
     <div class="callback__result callback__result--error">
       {% set closeClass = "callback__result-close js-callback-close" %}
       {% set closeIconClass = "callback__result-close-icon" %}
-      {% include "partials/callback/close/close.njk" %}
+      {% include "partials/close/close.njk" %}
 
       {% set isSuccess = false %}
       {% include "partials/callback/result/result.njk" %}

@@ -1,0 +1,30 @@
+{% set modal = {
+  id: "callback-modal",
+  title: "Заказать обратный звонок"
+} %}
+{% extends "partials/modal/modal.njk" %}
+
+{% block content %}
+<div class="callback-modal">
+  {% set callbackFormFields = callbackModalFormFields %}
+  {% include "partials/callback/form/form.njk" %}
+
+  <div class="callback__result callback__result--success">
+    {% set closeClass = "callback__result-close js-callback-close" %}
+    {% set closeIconClass = "callback__result-close-icon" %}
+    {% include "partials/close/close.njk" %}
+
+    {% set isSuccess = true %}
+    {% include "partials/callback/result/result.njk" %}
+  </div>
+
+  <div class="callback__result callback__result--error">
+    {% set closeClass = "callback__result-close js-callback-close" %}
+    {% set closeIconClass = "callback__result-close-icon" %}
+    {% include "partials/close/close.njk" %}
+
+    {% set isSuccess = false %}
+    {% include "partials/callback/result/result.njk" %}
+  </div>
+</div>
+{% endblock %}

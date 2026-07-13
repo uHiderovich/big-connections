@@ -2,6 +2,7 @@
   type="button"
   class="focus {{ closeClass }}"
   aria-label="Закрыть"
+  {% if dataBcClose %} data-bc-close="{{ dataBcClose }}"{% endif %}
 >
   {% set icon = {
     name: "close",

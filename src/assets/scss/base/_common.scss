@@ -21,8 +21,11 @@
 }
 
 .page-content {
-  padding-top: 38px;
-  padding-bottom: 50px;
+  padding-block: 50px;
+
+  &--not-bottom {
+    padding-bottom: 0;
+  }
 }
 
 .compensation-margin {

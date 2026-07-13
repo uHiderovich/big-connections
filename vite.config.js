@@ -219,6 +219,11 @@ function nunjucksHtml() {
 }
 
 export default defineConfig({
+  resolve: {
+    alias: {
+      '@': projectRoot + '/src',
+    },
+  },
   plugins: [
     relocateHtmlOutput(),
     nunjucksHtml(),

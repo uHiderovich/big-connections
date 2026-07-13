@@ -1,5 +1,5 @@
 import { closeNavDropdowns } from '../../macros/nav-dropdown/nav-dropdown';
-import { setScrollLocked } from '../../../js/modules/scroll-lock';
+import { setScrollLocked } from '../../../js/helpers/scroll-lock';
 
 export function init() {
   const panel = document.querySelector('.js-city-select-panel');

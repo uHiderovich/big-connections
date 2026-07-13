@@ -6,6 +6,7 @@
   class="{{ btnClass }}"
   {% if button.href %}href="{{ button.href }}"{% endif %}
   {% if tag == 'button' %}type="{{ button.type | default('button') }}"{% endif %}
+  {% if button.dataBcOpen %} data-bc-open="{{ button.dataBcOpen }}"{% endif %}
 >
   {{ button.text }}
 </{{ tag }}>

@@ -1,7 +1,7 @@
 {% extends "layouts/default.njk" %}
 
 {% block content %}
-<div class="page-content">
+<div class="page-content{% if notBottom | default(false) %} page-content--not-bottom{% endif %}">
   <div class="container">
     {% block head %}
     {% endblock %}
