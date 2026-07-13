@@ -61,4 +61,10 @@ export function init() {
   overlay?.addEventListener('click', () => {
     setOpen(false);
   });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && panel.classList.contains(openClass)) {
+      setOpen(false);
+    }
+  });
 }

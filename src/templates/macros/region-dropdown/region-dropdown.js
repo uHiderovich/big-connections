@@ -16,6 +16,10 @@ export function init() {
     panel?.setAttribute('aria-hidden', 'true');
   };
 
+  const closeAll = () => {
+    dropdowns.forEach(closeDropdown);
+  };
+
   dropdowns.forEach((dropdown) => {
     const toggle = dropdown.querySelector('.js-region-dropdown-toggle');
 
@@ -27,11 +31,19 @@ export function init() {
         return;
       }
 
+      closeAll();
+
       const panel = dropdown.querySelector('.js-region-dropdown-panel');
 
       dropdown.classList.add(openClass);
       toggle.setAttribute('aria-expanded', 'true');
       panel?.setAttribute('aria-hidden', 'false');
     });
+  });
+
+  document.addEventListener('keydown', (event) => {
+    if (event.key === 'Escape' && [...dropdowns].some((dropdown) => dropdown.classList.contains(openClass))) {
+      closeAll();
+    }
   });
 }

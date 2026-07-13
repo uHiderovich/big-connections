@@ -2,7 +2,7 @@
   <div class="header__top">
     <div class="container header__top-inner">
       <button
-        class="header__city-select city-select js-city-select-toggle"
+        class="header__city-select city-select focus js-city-select-toggle"
         type="button"
         aria-expanded="false"
         aria-controls="city-panel"
@@ -16,15 +16,15 @@
         <span class="city-select__text">Черемхово</span>
       </button>
 
-      <a class="header__support-link" href="{{ notFoundPageUrl }}">Техподдержка</a>
-      <a class="header__phone" href="tel:+78004441109">+7 800 444 11 09</a>
+      <a class="header__support-link focus" href="{{ notFoundPageUrl }}">Техподдержка</a>
+      <a class="header__phone focus" href="tel:+78004441109">+7 800 444 11 09</a>
     </div>
 
     {% include "partials/city-panel/city-panel.njk" %}
   </div>
 
   <div class="container header__bottom">
-    <a class="header__logo" href="/">
+    <a class="header__logo focus" href="/">
       <img
         class="header__logo-img"
         src="/src/assets/images/logo.png"
@@ -75,7 +75,7 @@
       %}
       {% include "partials/button/button.njk" %}
 
-      <a class="profile-btn" href="{{ notFoundPageUrl }}" aria-label="Профиль">
+      <a class="profile-btn focus" href="{{ notFoundPageUrl }}" aria-label="Профиль">
         {% set icon ={
             name: "profile",
             class: "profile-btn__icon"

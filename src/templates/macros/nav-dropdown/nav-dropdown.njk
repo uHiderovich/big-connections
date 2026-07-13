@@ -1,7 +1,7 @@
 {% macro navDropdown(id, label, items) %}
   <div class="nav-dropdown js-nav-dropdown">
     <button
-      class="nav-btn simple-box simple-box--blue js-nav-dropdown-toggle"
+      class="nav-btn simple-box simple-box--blue focus js-nav-dropdown-toggle"
       type="button"
       aria-expanded="false"
       aria-controls="nav-dropdown-{{ id }}"
@@ -19,7 +19,7 @@
         {% for item in items %}
           <li>
             <a
-              class="nav-dropdown__link"
+              class="nav-dropdown__link focus"
               href="{{ item.href if item.href is defined else notFoundPageUrl }}"
             >{{ item.text if item.text is defined else item }}</a>
           </li>

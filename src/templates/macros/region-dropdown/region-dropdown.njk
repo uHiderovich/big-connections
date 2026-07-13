@@ -1,7 +1,7 @@
 {% macro regionDropdown(id, label, cities) %}
   <div class="region-dropdown js-region-dropdown">
     <button
-      class="simple-box simple-box--white region-btn js-region-dropdown-toggle"
+      class="simple-box simple-box--white region-btn focus js-region-dropdown-toggle"
       type="button"
       aria-expanded="false"
       aria-controls="region-dropdown-{{ id }}"
@@ -20,7 +20,7 @@
       aria-hidden="true"
     >
       {% for city in cities %}
-        <li><a class="region-dropdown__link" href="{{ notFoundPageUrl }}">{{ city }}</a></li>
+        <li><a class="region-dropdown__link focus" href="{{ notFoundPageUrl }}">{{ city }}</a></li>
       {% endfor %}
     </ul>
   </div>

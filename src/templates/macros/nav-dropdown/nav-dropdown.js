@@ -104,7 +104,7 @@ export function init() {
   closeNavDropdowns = closeAll;
 
   document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape') {
+    if (event.key === 'Escape' && [...dropdowns].some((dropdown) => dropdown.classList.contains(openClass))) {
       closeAll();
     }
   });
