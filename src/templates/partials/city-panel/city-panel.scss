@@ -1,37 +1,27 @@
-$city-panel-duration: 0.8s;
 $city-panel-ease: cubic-bezier(0.22, 1, 0.36, 1);
 
 .city-panel {
   position: fixed;
-  top: 0;
-  left: 0;
-  right: 0;
+  inset: 0;
   z-index: 100;
-  display: flex;
-  flex-direction: column;
-  height: 0;
-  overflow: hidden;
-  opacity: 0;
   visibility: hidden;
   pointer-events: none;
 
   &--open {
     visibility: visible;
     pointer-events: auto;
-    animation: city-panel-open $city-panel-duration $city-panel-ease forwards;
 
-    .city-panel__overlay {
+    .city-panel__content {
       opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
+      transform: translateY(0);
     }
-  }
-
-  &--closing {
-    visibility: visible;
-    pointer-events: none;
-    animation: city-panel-close $city-panel-duration $city-panel-ease forwards;
 
     .city-panel__overlay {
       opacity: 1;
+      visibility: visible;
+      pointer-events: auto;
     }
   }
 
@@ -42,15 +32,28 @@ $city-panel-ease: cubic-bezier(0.22, 1, 0.36, 1);
     padding-top: 11px;
     padding-bottom: 50px;
     background: var(--color-white);
+    opacity: 0;
+    visibility: hidden;
+    pointer-events: none;
+    transform: translateY(-8px);
+    transition:
+      opacity 0.3s $city-panel-ease,
+      transform 0.3s $city-panel-ease,
+      visibility 0.3s $city-panel-ease;
   }
 
   &__overlay {
-    flex: 1;
-    min-height: 0;
+    position: fixed;
+    inset: 0;
+    z-index: 1;
     background-color: rgb(255 255 255 / 88%);
     backdrop-filter: blur(4px);
     opacity: 0;
-    transition: opacity 0.3s $city-panel-ease;
+    visibility: hidden;
+    pointer-events: none;
+    transition:
+      opacity 0.3s $city-panel-ease,
+      visibility 0.3s $city-panel-ease;
   }
 
   &__inner {
@@ -123,62 +126,5 @@ $city-panel-ease: cubic-bezier(0.22, 1, 0.36, 1);
   &__link {
     color: var(--color-dark-grey);
     text-decoration: none;
-  }
-}
-
-@keyframes city-panel-open {
-  0% {
-    height: 0;
-    opacity: 0;
-  }
-
-  15% {
-    height: 0;
-    opacity: 1;
-  }
-
-  100% {
-    height: 100dvh;
-    opacity: 1;
-  }
-}
-
-@keyframes city-panel-close {
-  0% {
-    height: 100dvh;
-    opacity: 1;
-  }
-
-  75% {
-    height: 0;
-    opacity: 1;
-  }
-
-  100% {
-    height: 0;
-    opacity: 0;
-  }
-}
-
-@keyframes city-panel-content-open {
-  0%,
-  30% {
-    opacity: 0;
-  }
-
-  100% {
-    opacity: 1;
-  }
-}
-
-@keyframes city-panel-content-close {
-  0%,
-  10% {
-    opacity: 1;
-  }
-
-  30%,
-  100% {
-    opacity: 0;
   }
 }

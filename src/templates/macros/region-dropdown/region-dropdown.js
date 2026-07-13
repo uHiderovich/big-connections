@@ -1,49 +1,44 @@
-export function init() {
-  const dropdowns = document.querySelectorAll('.js-region-dropdown');
+import { defineComponent } from '@/js/helpers/defineComponent';
+import { defineEscapeClick } from '@/js/helpers/defineEscapeClick';
 
-  if (!dropdowns.length) {
-    return;
-  }
+const SELECTOR = '.js-region-dropdown';
 
-  const openClass = 'region-dropdown--open';
-
-  const closeDropdown = (dropdown) => {
+defineComponent({
+  selector: SELECTOR,
+  setup(dropdown) {
     const toggle = dropdown.querySelector('.js-region-dropdown-toggle');
     const panel = dropdown.querySelector('.js-region-dropdown-panel');
 
-    dropdown.classList.remove(openClass);
-    toggle?.setAttribute('aria-expanded', 'false');
-    panel?.setAttribute('aria-hidden', 'true');
-  };
+    const openClass = 'region-dropdown--open';
 
-  const closeAll = () => {
-    dropdowns.forEach(closeDropdown);
-  };
+    const closeDropdown = (dropdown) => {
+      dropdown.classList.remove(openClass);
+      toggle?.setAttribute('aria-expanded', 'false');
+      panel?.setAttribute('aria-hidden', 'true');
+    };
 
-  dropdowns.forEach((dropdown) => {
-    const toggle = dropdown.querySelector('.js-region-dropdown-toggle');
+    const closeAll = () => {
+      document.querySelectorAll(SELECTOR).forEach((dropdown) => {
+        closeDropdown(dropdown);
+      });
+    };
 
-    toggle?.addEventListener('click', () => {
-      const isOpen = dropdown.classList.contains(openClass);
-
-      if (isOpen) {
+    const openDropdown = () => {
+      if (dropdown.classList.contains(openClass)) {
         closeDropdown(dropdown);
         return;
       }
 
       closeAll();
 
-      const panel = dropdown.querySelector('.js-region-dropdown-panel');
-
       dropdown.classList.add(openClass);
+
       toggle.setAttribute('aria-expanded', 'true');
       panel?.setAttribute('aria-hidden', 'false');
-    });
-  });
+    };
 
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && [...dropdowns].some((dropdown) => dropdown.classList.contains(openClass))) {
-      closeAll();
-    }
-  });
-}
+    toggle?.addEventListener('click', openDropdown);
+
+    defineEscapeClick([dropdown], openClass, () => closeDropdown(dropdown));
+  },
+});

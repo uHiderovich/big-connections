@@ -1,5 +1,6 @@
 import JustValidate from 'just-validate';
 import IMask from 'imask';
+import { defineComponent } from '@/js/helpers/defineComponent';
 
 const validClass = 'callback-form__field--valid';
 const invalidClass = 'callback-form__field--invalid';
@@ -154,10 +155,11 @@ function initCallbackBox(box) {
   };
 }
 
-export function init() {
-  document.querySelectorAll('.js-callback-box').forEach((box) => {
+defineComponent({
+  selector: '.js-callback-box',
+  setup(box) {
     initCallbackBox(box);
-  });
-}
+  },
+});
 
 export { initCallbackBox, setBoxState };

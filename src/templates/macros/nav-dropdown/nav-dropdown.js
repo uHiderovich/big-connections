@@ -1,16 +1,16 @@
-import { setScrollLocked } from '../../../js/helpers/scroll-lock';
+import { setScrollLocked, defineEscapeClick } from '@/js/helpers';
+import { defineComponent } from '@/js/helpers';
 
 let closeNavDropdowns = () => {};
 
 export { closeNavDropdowns };
 
 const openClass = 'nav-dropdown--open';
-const overlayOpenClass = 'header__nav-overlay--open';
-const headerNavOpenClass = 'header--nav-open';
+const containerOpenClass = 'nav-dropdown-container--open';
 
-const updateHeaderHeight = (header) => {
-  const { bottom } = header.getBoundingClientRect();
-  header.style.setProperty('--header-height', `${Math.max(0, bottom)}px`);
+const updateContainerHeight = (container) => {
+  const { bottom } = container.getBoundingClientRect();
+  container.style.setProperty('--nav-dropdown-container-height', `${Math.max(0, bottom)}px`);
 };
 
 const updateListOffset = (dropdown) => {
@@ -21,91 +21,72 @@ const updateListOffset = (dropdown) => {
     return;
   }
 
-  panel.style.setProperty(
-    '--nav-dropdown-list-offset',
-    `${text.getBoundingClientRect().left}px`,
-  );
+  const { left } = text.getBoundingClientRect();
+  panel.style.setProperty('--nav-dropdown-list-offset', `${left}px`);
 };
 
-export function init() {
-  const header = document.querySelector('.js-header');
+const SELECTOR = '.js-nav-dropdown';
 
-  if (!header) {
-    return;
-  }
+defineComponent({
+  selector: SELECTOR,
+  setup(dropdown) {
+    const toggle = dropdown.querySelector('.js-nav-dropdown-toggle');
+    const panel = dropdown.querySelector('.js-nav-dropdown-panel');
+    const navDropdownContainer = document.querySelector('.js-nav-dropdown-container');
+    const overlay = dropdown.querySelector('.js-nav-dropdown-overlay');
 
-  const overlay = header.querySelector('.js-nav-overlay');
-  const dropdowns = header.querySelectorAll('.js-nav-dropdown');
-
-  if (!dropdowns.length) {
-    return;
-  }
-
-  const refreshLayout = () => {
-    updateHeaderHeight(header);
-    dropdowns.forEach((dropdown) => {
+    const refreshLayout = () => {
+      updateContainerHeight(navDropdownContainer);
       if (dropdown.classList.contains(openClass)) {
         updateListOffset(dropdown);
       }
-    });
-  };
+    };
 
-  refreshLayout();
-  window.addEventListener('resize', refreshLayout);
-  window.addEventListener('scroll', refreshLayout, { passive: true });
+    refreshLayout();
+    window.addEventListener('resize', refreshLayout);
 
-  const closeAll = () => {
-    dropdowns.forEach((dropdown) => {
-      const toggle = dropdown.querySelector('.js-nav-dropdown-toggle');
-      const panel = dropdown.querySelector('.js-nav-dropdown-panel');
-
+    const closeDropdown = (dropdown) => {
       dropdown.classList.remove(openClass);
       toggle?.setAttribute('aria-expanded', 'false');
       panel?.setAttribute('aria-hidden', 'true');
-    });
+      overlay?.setAttribute('aria-hidden', 'true');
+      navDropdownContainer.classList.remove(containerOpenClass);
+      setScrollLocked('nav-dropdown', false);
+    };
 
-    overlay?.classList.remove(overlayOpenClass);
-    overlay?.setAttribute('aria-hidden', 'true');
-    header.classList.remove(headerNavOpenClass);
-    setScrollLocked('nav-dropdown', false);
-  };
+    const closeAll = () => {
+      document.querySelectorAll(SELECTOR).forEach((dropdown) => {
+        closeDropdown(dropdown);
+      });
+    };
 
-  const openDropdown = (dropdown) => {
-    closeAll();
+    const openDropdown = () => {
+      closeAll();
 
-    const toggle = dropdown.querySelector('.js-nav-dropdown-toggle');
-    const panel = dropdown.querySelector('.js-nav-dropdown-panel');
+      dropdown.classList.add(openClass);
 
-    updateListOffset(dropdown);
-    dropdown.classList.add(openClass);
-    toggle?.setAttribute('aria-expanded', 'true');
-    panel?.setAttribute('aria-hidden', 'false');
-    overlay?.classList.add(overlayOpenClass);
-    overlay?.setAttribute('aria-hidden', 'false');
-    header.classList.add(headerNavOpenClass);
-    setScrollLocked('nav-dropdown', true);
-  };
+      refreshLayout();
 
-  dropdowns.forEach((dropdown) => {
-    const toggle = dropdown.querySelector('.js-nav-dropdown-toggle');
+      toggle?.setAttribute('aria-expanded', 'true');
+      panel?.setAttribute('aria-hidden', 'false');
+      overlay?.setAttribute('aria-hidden', 'false');
+      navDropdownContainer.classList.add(containerOpenClass);
+      setScrollLocked('nav-dropdown', true);
+    };
 
     toggle?.addEventListener('click', () => {
       if (dropdown.classList.contains(openClass)) {
-        closeAll();
+        closeDropdown(dropdown);
         return;
       }
 
       openDropdown(dropdown);
     });
-  });
 
-  overlay?.addEventListener('click', closeAll);
+    overlay?.addEventListener('click', () => closeDropdown(dropdown));
 
-  closeNavDropdowns = closeAll;
+    closeNavDropdowns = closeAll;
 
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && [...dropdowns].some((dropdown) => dropdown.classList.contains(openClass))) {
-      closeAll();
-    }
-  });
-}
+    defineEscapeClick([dropdown], openClass, () => closeDropdown(dropdown));
+  },
+});

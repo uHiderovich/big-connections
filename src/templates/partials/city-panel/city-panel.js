@@ -1,70 +1,48 @@
-import { closeNavDropdowns } from '../../macros/nav-dropdown/nav-dropdown';
-import { setScrollLocked } from '../../../js/helpers/scroll-lock';
+import { closeNavDropdowns } from '@/templates/macros/nav-dropdown/nav-dropdown';
+import { setScrollLocked } from '@/js/helpers/scroll-lock';
+import { defineEscapeClick } from '@/js/helpers/defineEscapeClick';
+import { defineComponent } from '@/js/helpers/defineComponent';
 
-export function init() {
-  const panel = document.querySelector('.js-city-select-panel');
+defineComponent({
+  selector: '.js-city-select-panel',
+  setup(panel) {
+    const toggle = document.querySelector('.js-city-select-toggle');
+    const overlay = panel.querySelector('.js-city-select-overlay');
+    const stayButton = panel.querySelector('.js-city-select-stay');
 
-  if (!panel) {
-    return;
-  }
+    const openClass = 'city-panel--open';
 
-  const toggle = document.querySelector('.js-city-select-toggle');
-  const overlay = panel.querySelector('.js-city-select-overlay');
-  const stayButton = panel.querySelector('.js-city-select-stay');
-  const openClass = 'city-panel--open';
-  const closingClass = 'city-panel--closing';
+    const closePanel = () => {
+      panel.classList.remove(openClass);
+      panel.setAttribute('aria-hidden', 'true');
+      toggle?.setAttribute('aria-expanded', 'false');
+      overlay?.setAttribute('aria-hidden', 'true');
+      setScrollLocked('city-panel', false);
+    };
 
-  const setOpen = (isOpen) => {
-    if (panel.classList.contains(closingClass)) {
-      return;
-    }
-
-    if (isOpen) {
-      panel.classList.remove(closingClass);
+    const openPanel = () => {
       panel.classList.add(openClass);
       panel.setAttribute('aria-hidden', 'false');
       overlay?.setAttribute('aria-hidden', 'false');
       toggle?.setAttribute('aria-expanded', 'true');
       setScrollLocked('city-panel', true);
-      return;
-    }
+    };
 
-    if (!panel.classList.contains(openClass)) {
-      return;
-    }
+    toggle?.addEventListener('click', () => {
+      closeNavDropdowns();
 
-    panel.classList.remove(openClass);
-    panel.classList.add(closingClass);
-    toggle?.setAttribute('aria-expanded', 'false');
-    overlay?.setAttribute('aria-hidden', 'true');
-  };
+      if (panel.classList.contains(openClass)) {
+        closePanel();
+        return;
+      }
 
-  panel.addEventListener('animationend', (event) => {
-    if (event.target !== panel || event.animationName !== 'city-panel-close') {
-      return;
-    }
+      openPanel();
+    });
 
-    panel.classList.remove(closingClass);
-    panel.setAttribute('aria-hidden', 'true');
-    setScrollLocked('city-panel', false);
-  });
+    stayButton?.addEventListener('click', closePanel);
 
-  toggle?.addEventListener('click', () => {
-    closeNavDropdowns();
-    setOpen(!panel.classList.contains(openClass));
-  });
+    overlay?.addEventListener('click', closePanel);
 
-  stayButton?.addEventListener('click', () => {
-    setOpen(false);
-  });
-
-  overlay?.addEventListener('click', () => {
-    setOpen(false);
-  });
-
-  document.addEventListener('keydown', (event) => {
-    if (event.key === 'Escape' && panel.classList.contains(openClass)) {
-      setOpen(false);
-    }
-  });
-}
+    defineEscapeClick([panel], openClass, closePanel);
+  },
+});
