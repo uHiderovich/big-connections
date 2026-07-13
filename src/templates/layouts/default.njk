@@ -5,6 +5,23 @@
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
     <meta name="description" content="{{ description | default('Статический сайт') }}" />
     <title>{{ title | default('Big Connections') }}</title>
+    <link
+      rel="preload"
+      href="/fonts/ubuntu/ubuntu-regular.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    >
+    <link
+      rel="preload"
+      href="/fonts/ubuntu/ubuntu-bold.woff2"
+      as="font"
+      type="font/woff2"
+      crossorigin
+    >
+    {% if criticalCss %}
+      <style>{{ criticalCss | safe }}</style>
+    {% endif %}
     <script type="module" src="/src/js/main.js"></script>
   </head>
   <body class="page">

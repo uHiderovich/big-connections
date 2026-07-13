@@ -3,7 +3,17 @@
     <div class="swiper-wrapper">
       {% for i in [1, 2, 3] %}
         <div class="swiper-slide hero__slide">
-          <img src="/src/assets/images/slide-1.jpg" alt="Hero" class="hero__slide-image">
+          <img
+          {% if loop.first %}
+            src="/src/assets/images/slide-1.jpg"
+            fetchpriority="high"
+            {% else %}
+              data-src="/src/assets/images/slide-1.jpg"
+            {% endif %}
+            alt="Hero"
+            class="hero__slide-image"
+            decoding="async"
+          >
         </div>
       {% endfor %}
     </div>

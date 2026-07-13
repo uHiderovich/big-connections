@@ -21,6 +21,7 @@ function collectHtmlFiles(directory) {
 collectHtmlFiles(distDir).forEach((filePath) => {
   const html = readFileSync(filePath, 'utf8');
   const formattedHtml = beautify.html(html, {
+    content_unformatted: ['style'],
     indent_size: 2,
     indent_inner_html: true,
     preserve_newlines: true,

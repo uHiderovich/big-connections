@@ -21,6 +21,7 @@ import { dirname, extname, relative, resolve } from 'node:path';
 import { fileURLToPath } from 'node:url';
 
 import nunjucks from 'nunjucks';
+import * as sass from 'sass';
 import { defineConfig } from 'vite';
 import { ViteImageOptimizer } from 'vite-plugin-image-optimizer';
 import { createSvgIconsPlugin } from 'vite-plugin-svg-icons';
@@ -30,6 +31,12 @@ const pagesDir = resolve(projectRoot, 'src/pages');
 const templatesDir = resolve(projectRoot, 'src/templates');
 const imagesDir = resolve(projectRoot, 'src/assets/images');
 const publicDir = resolve(projectRoot, 'public');
+const stylesDir = resolve(projectRoot, 'src/assets/scss');
+const baseDir = resolve(stylesDir, 'base');
+const criticalStylesFile = resolve(stylesDir, 'main.scss');
+const criticalScssFiles = new Set([
+  criticalStylesFile,
+]);
 
 const IMAGE_EXTENSIONS = new Set([
   '.avif',
@@ -68,6 +75,13 @@ function getHtmlInputs() {
       [name]: filePath,
     };
   }, {});
+}
+
+function getCriticalCss() {
+  return sass.compile(criticalStylesFile, {
+    loadPaths: [baseDir],
+    style: 'compressed',
+  }).css;
 }
 
 function relocateDistDirectory(fromDir, toDir) {
@@ -120,6 +134,10 @@ function shouldFullReload(file) {
     return true;
   }
 
+  if (extension === '.scss' && criticalScssFiles.has(normalized)) {
+    return true;
+  }
+
   if (normalized.startsWith(imagesDir) && IMAGE_EXTENSIONS.has(extension)) {
     return true;
   }
@@ -135,7 +153,7 @@ function nunjucksHmr() {
   return {
     name: 'nunjucks-hmr',
     configureServer(server) {
-      const watchDirs = [pagesDir, templatesDir, imagesDir, publicDir].filter((dir) =>
+      const watchDirs = [pagesDir, templatesDir, stylesDir, baseDir, imagesDir, publicDir].filter((dir) =>
         existsSync(dir),
       );
 
@@ -210,6 +228,7 @@ function nunjucksHtml() {
           : '';
 
         return env.renderString(html, {
+          criticalCss: getCriticalCss(),
           isDev: Boolean(context.server),
           pagePath,
         });

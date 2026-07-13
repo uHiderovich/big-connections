@@ -7,6 +7,8 @@
   display: grid;
   grid-template-rows: auto 1fr auto;
   min-height: 100vh;
+  width: 100vw;
+  overflow-x: hidden;
 
   &__main {
     min-height: 300px;
@@ -102,4 +104,14 @@
   &--white {
     background: var(--color-white);
   }
+}
+
+.swiper {
+  width: 100%;
+  height: 100%;
+}
+
+.swiper-wrapper,
+.swiper-slide {
+  height: 100%;
 }

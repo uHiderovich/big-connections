@@ -25,13 +25,16 @@
 
   <div class="container header__bottom">
     <a class="header__logo focus" href="/">
-      <img
-        class="header__logo-img"
-        src="/src/assets/images/logo.png"
-        width="226"
-        height="45"
-        alt="Большие Связи"
-      />
+      <picture>
+        <source srcset="/src/assets/images/logo-2x.png 2x, /src/assets/images/logo-1x.png 1x">
+        <img
+          class="header__logo-img"
+          src="/src/assets/images/logo-1x.png"
+          width="226"
+          height="45"
+          alt="Большие Связи"
+        />
+      </picture>
     </a>
 
     <nav class="header__nav" aria-label="Основная навигация">
