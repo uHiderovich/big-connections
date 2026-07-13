@@ -2,8 +2,16 @@
 
 {% set title = "Видеонаблюдение для дома — Большие Связи" %}
 {% set description = "Видеонаблюдение для дома в г. Черемхово" %}
+{% set tariffPage = {
+  title: "Видеонаблюдение для дома / г. Черемхово",
+  breadcrumbs: [
+    { text: "Тарифы и услуги" },
+    { text: "Видеонаблюдение для дома" }
+  ],
+  items: homeVideoSurveillanceTariffs,
+  titleBig: true
+} %}
 
 {% block content %}
-  {% set titleBig = true %}
-  {% include "pages/home-video-surveillance/home-video-surveillance.njk" %}
+  {% include "pages/tariffs/tariffs.njk" %}
 {% endblock %}

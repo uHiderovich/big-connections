@@ -2,18 +2,16 @@
 
 <section class="tariff-page">
   <div class="container">
-    {{ breadcrumbs([
-      { text: "Тарифы и услуги" },
-      { text: "Видеонаблюдение для дома" }
-    ]) }}
+    {{ breadcrumbs(tariffPage.breadcrumbs) }}
 
     <h1 class="section-title tariff-page__title">
-      Видеонаблюдение для дома / г. Черемхово
+      {{ tariffPage.title }}
     </h1>
 
     <ul class="tariff-page__grid">
-      {% for item in homeVideoSurveillanceTariffs %}
+      {% for item in tariffPage.items %}
         {% set tariff = item %}
+        {% set titleBig = tariffPage.titleBig | default(false) %}
         {% include "partials/tariff-card/tariff-card.njk" %}
       {% endfor %}
     </ul>

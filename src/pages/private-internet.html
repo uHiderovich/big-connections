@@ -2,7 +2,15 @@
 
 {% set title = "Интернет для частного сектора — Большие Связи" %}
 {% set description = "Тарифы интернета для частного сектора в г. Черемхово" %}
+{% set tariffPage = {
+  title: "Тарифы для частного сектора / г. Черемхово",
+  breadcrumbs: [
+    { text: "Тарифы и услуги" },
+    { text: "Интернет для частного сектора" }
+  ],
+  items: privateInternetTariffs
+} %}
 
 {% block content %}
-  {% include "pages/private-internet/private-internet.njk" %}
+  {% include "pages/tariffs/tariffs.njk" %}
 {% endblock %}
