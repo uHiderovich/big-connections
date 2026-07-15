@@ -1,0 +1,21 @@
+:root {
+  --callback-modal-width: 638px;
+}
+
+.callback-modal {
+  width: var(--callback-modal-width);
+  max-width: 100%;
+  margin-inline: auto;
+  padding: 50px 40px;
+  background: var(--color-light-blue);
+  border-radius: 20px;
+
+  &__title {
+    margin-bottom: 20px;
+    text-align: center;
+  }
+}
+
+.callback-modal-result {
+  width: var(--callback-modal-width);
+}

@@ -26,11 +26,11 @@ function updateFieldWithoutRulesState(field) {
   field.classList.remove(validClass);
 }
 
-function setBoxState(box, state) {
-  box.classList.remove(...boxStateClasses);
+function setBoxState(container, state) {
+  container.classList.remove(...boxStateClasses);
 
   if (state) {
-    box.classList.add(`callback--${state}`);
+    container.classList.add(`callback--${state}`);
   }
 }
 
@@ -67,24 +67,26 @@ async function sendForm(form) {
   }
 }
 
-function initCallbackBox(box) {
-  const form = box.querySelector('.js-callback-form');
+const showFormView = (container) => {
+  setBoxState(container);
+};
+
+const showSuccessView = (container) => {
+  setBoxState(container, 'success');
+};
+
+const showErrorView = (container) => {
+  setBoxState(container, 'error');
+};
+
+function initForm(config) {
+  const { container, successCallback, errorCallback } = config;
+
+  const form = container.querySelector('.js-callback-form');
 
   if (!form) {
     return null;
   }
-
-  const showFormView = () => {
-    setBoxState(box);
-  };
-
-  const showSuccessView = () => {
-    setBoxState(box, 'success');
-  };
-
-  const showErrorView = () => {
-    setBoxState(box, 'error');
-  };
 
   form.querySelectorAll('[data-validate="phone"]').forEach((phone) => {
     IMask(phone, {
@@ -127,22 +129,14 @@ function initCallbackBox(box) {
     });
   });
 
-  box.addEventListener('click', (event) => {
-    if (!event.target.closest('.js-callback-close')) {
-      return;
-    }
-
-    showFormView();
-  });
-
   validation.onSuccess(async () => {
     validation.lockForm();
 
     try {
       await sendForm(form);
-      showSuccessView();
+      successCallback();
     } catch {
-      showErrorView();
+      errorCallback();
     } finally {
       validation.unlockForm();
     }
@@ -157,9 +151,25 @@ function initCallbackBox(box) {
 
 defineComponent({
   selector: '.js-callback-box',
-  setup(box) {
-    initCallbackBox(box);
+  setup(container) {
+    initForm({
+      container,
+      successCallback: () => {
+        showSuccessView(container);
+      },
+      errorCallback: () => {
+        showErrorView(container);
+      },
+    });
+
+    container.addEventListener('click', (event) => {
+      if (!event.target.closest('.js-callback-close')) {
+        return;
+      }
+
+      showFormView(container);
+    });
   },
 });
 
-export { initCallbackBox, setBoxState };
+export { initForm, setBoxState };

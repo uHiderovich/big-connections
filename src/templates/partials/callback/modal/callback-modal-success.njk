@@ -1,0 +1,11 @@
+{% set modal = {
+  id: "callback-modal-success"
+} %}
+{% extends "partials/modal/modal.njk" %}
+
+{% block content %}
+<div class="callback-modal-result">
+  {% set isSuccess = true %}
+  {% include "partials/callback/result/result.njk" %}
+</div>
+{% endblock %}
