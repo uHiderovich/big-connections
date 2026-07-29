@@ -4,7 +4,9 @@ html {
 
 body {
   &.scroll-locked {
-    overflow: hidden;
+    position: fixed;
+    inset-inline: 0;
+    width: 100%;
     padding-right: var(--scrollbar-width, 0px);
   }
 }
