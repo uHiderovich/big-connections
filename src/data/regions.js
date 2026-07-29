@@ -3,7 +3,7 @@ export const regions = [
     id: 'irkutsk',
     panelTitle: 'Иркутская область:',
     buttonLabel: 'Иркутская<br>область',
-    image: '/src/assets/images/coverage/geo-irkutsk.png',
+    image: '/images/coverage/geo-irkutsk.png',
     alt: 'Иркутская область',
     cities: [
       'г. Черемхово',
@@ -26,7 +26,7 @@ export const regions = [
     id: 'krasnoyarsk',
     panelTitle: 'Красноярский край:',
     buttonLabel: 'Красноярский<br>край',
-    image: '/src/assets/images/coverage/geo-krasnoyarsk.png',
+    image: '/images/coverage/geo-krasnoyarsk.png',
     alt: 'Красноярский край',
     cities: [
       'г. Иланский',
@@ -40,7 +40,7 @@ export const regions = [
     id: 'buryatia',
     panelTitle: 'Республика Бурятия:',
     buttonLabel: 'Республика<br>Бурятия',
-    image: '/src/assets/images/coverage/geo-buryatia.png',
+    image: '/images/coverage/geo-buryatia.png',
     alt: 'Республика Бурятия',
     panelSpaced: true,
     cities: [
@@ -56,7 +56,7 @@ export const regions = [
     id: 'jewish-ao',
     panelTitle: 'Еврейская автономная область:',
     buttonLabel: 'Еврейская АО',
-    image: '/src/assets/images/coverage/geo-jewish-ao.png',
+    image: '/images/coverage/geo-jewish-ao.png',
     alt: 'Еврейская автономная область',
     cities: ['г. Биробиджан', 'с. Валдгейм', 'с. Раздольное'],
   },

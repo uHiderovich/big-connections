@@ -5,10 +5,10 @@
         <div class="swiper-slide hero__slide">
           <img
           {% if loop.first %}
-            src="/src/assets/images/slide-{{i}}.jpg"
+            src="/images/slide-{{i}}.jpg"
             fetchpriority="high"
             {% else %}
-              data-src="/src/assets/images/slide-{{i}}.jpg"
+              data-src="/images/slide-{{i}}.jpg"
             {% endif %}
             alt="Hero"
             class="hero__slide-image"
