@@ -11,13 +11,49 @@
 
   &__grid {
     display: grid;
-    grid-template-columns: repeat(5, 179px) auto;
+    grid-template-columns: repeat(5, minmax(0, 179px)) minmax(0, 1fr);
     gap: 20px;
+
+    @media (max-width: 1200px) {
+      grid-template-columns: repeat(4, minmax(0, 179px)) minmax(0, 1fr);
+      grid-template-areas:
+        "company services support docs social"
+        "company services support docs app";
+      column-gap: 20px;
+      row-gap: 40px;
+    }
   }
 
   &__col {
     display: flex;
     flex-direction: column;
+    min-width: 0;
+
+    @media (max-width: 1200px) {
+      &--company {
+        grid-area: company;
+      }
+
+      &--services {
+        grid-area: services;
+      }
+
+      &--support {
+        grid-area: support;
+      }
+
+      &--docs {
+        grid-area: docs;
+      }
+
+      &--social {
+        grid-area: social;
+      }
+
+      &--app {
+        grid-area: app;
+      }
+    }
   }
 
   &__title {

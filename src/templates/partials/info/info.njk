@@ -58,23 +58,23 @@
 
           <ul class="info__promo-grid">
             {% for card in promoCards %}
-              <li class="info__promo-card{% if card.hintTooltip %} info__promo-card--with-hint-tooltip{% endif %}">
-                <div class="info__promo-title-wrap">
-                  <h3 class="info__promo-title">{{ card.title }}</h3>
-                  {% if card.hintTooltip %}
-                    {% set hintTooltip = card.hintTooltip %}
-                    {% include "partials/hint-tooltip/hint-tooltip.njk" %}
-                  {% endif %}
-                </div>
-                <p class="info__promo-text">{{ card.text | safe }}</p>
-                <img
-                  class="info__promo-image"
-                  src="{{ card.image }}"
-                  width="{{ card.width }}"
-                  height="{{ card.height }}"
-                  alt=""
-                >
-              </li>
+            <li class="info__promo-card{% if card.hintTooltip %} info__promo-card--with-hint-tooltip{% endif %}">
+              <div class="info__promo-title-wrap">
+                <h3 class="info__promo-title">{{ card.title }}</h3>
+                {% if card.hintTooltip %}
+                {% set hintTooltip = card.hintTooltip %}
+                {% include "partials/hint-tooltip/hint-tooltip.njk" %}
+                {% endif %}
+              </div>
+              <p class="info__promo-text">{{ card.text | safe }}</p>
+              <img
+                class="info__promo-image"
+                src="{{ card.image }}"
+                width="{{ card.width }}"
+                height="{{ card.height }}"
+                alt=""
+              >
+            </li>
             {% endfor %}
           </ul>
         </section>
@@ -84,16 +84,16 @@
 
           <ul class="info__coverage-grid">
             {% for region in regions %}
-              <li class="info__coverage-item">
-                <img
-                  class="info__coverage-image"
-                  src="{{ region.image }}"
-                  width="100"
-                  height="100"
-                  alt="{{ region.alt }}"
-                >
-                {{ regionDropdown(region.id, region.buttonLabel, region.cities) }}
-              </li>
+            <li class="info__coverage-item">
+              <img
+                class="info__coverage-image"
+                src="{{ region.image }}"
+                width="100"
+                height="100"
+                alt="{{ region.alt }}"
+              >
+              {{ regionDropdown(region.id, region.buttonLabel, region.cities) }}
+            </li>
             {% endfor %}
           </ul>
         </section>

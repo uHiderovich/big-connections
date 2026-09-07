@@ -2,19 +2,19 @@
   <div class="swiper hero__slider js-hero-slider">
     <div class="swiper-wrapper">
       {% for i in [1, 2, 3] %}
-        <div class="swiper-slide hero__slide">
-          <img
+      <div class="swiper-slide hero__slide">
+        <img
           {% if loop.first %}
-            src="/images/slide-{{i}}.jpg"
-            fetchpriority="high"
-            {% else %}
-              data-src="/images/slide-{{i}}.jpg"
-            {% endif %}
-            alt="Hero"
-            class="hero__slide-image"
-            decoding="async"
-          >
-        </div>
+          src="/images/slide-{{i}}.jpg"
+          fetchpriority="high"
+          {% else %}
+          data-src="/images/slide-{{i}}.jpg"
+          {% endif %}
+          alt="Hero"
+          class="hero__slide-image"
+          decoding="async"
+        >
+      </div>
       {% endfor %}
     </div>
 

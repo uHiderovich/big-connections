@@ -5,19 +5,19 @@
 
   <div class="office-addresses__entries">
     {% for address in officeAddressRow.addresses %}
-      <div class="office-addresses__entry">
-        <address class="bordered-box office-addresses__cell office-addresses__cell--location">
-          {{ address | safe }}
-        </address>
+    <div class="office-addresses__entry">
+      <address class="bordered-box office-addresses__cell office-addresses__cell--location">
+        {{ address | safe }}
+      </address>
 
-        <div class="bordered-box office-addresses__cell office-addresses__cell--schedule">
-          {{ officeSchedule | safe }}
-        </div>
-
-        <div class="bordered-box office-addresses__cell office-addresses__cell--phone">
-          <a class="office-addresses__phone focus" href="{{ officePhone.href }}">{{ officePhone.display }}</a>
-        </div>
+      <div class="bordered-box office-addresses__cell office-addresses__cell--schedule">
+        {{ officeSchedule | safe }}
       </div>
+
+      <div class="bordered-box office-addresses__cell office-addresses__cell--phone">
+        <a class="office-addresses__phone focus" href="{{ officePhone.href }}">{{ officePhone.display }}</a>
+      </div>
+    </div>
     {% endfor %}
   </div>
 </li>

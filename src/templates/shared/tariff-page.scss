@@ -1,6 +1,10 @@
 .tariff-page {
   padding-block: 50px;
 
+  @media (max-width: 1024px) {
+    padding-block: 36px;
+  }
+
   &__title {
     margin-bottom: 30px;
   }

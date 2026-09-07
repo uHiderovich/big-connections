@@ -32,6 +32,7 @@ export default [
       templateEngineSyntax: TEMPLATE_ENGINE_SYNTAX.TWIG,
     },
     rules: {
+      '@html-eslint/indent': ['error', 2],
       '@html-eslint/no-multiple-empty-lines': ['error', { max: 1 }],
       '@html-eslint/quotes': ['error', 'double'],
     },
