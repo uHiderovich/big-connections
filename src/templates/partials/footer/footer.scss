@@ -14,7 +14,7 @@
     grid-template-columns: repeat(5, minmax(0, 179px)) minmax(0, 1fr);
     gap: 20px;
 
-    @media (max-width: 1200px) {
+    @media (max-width: 1199px) {
       grid-template-columns: repeat(4, minmax(0, 179px)) minmax(0, 1fr);
       grid-template-areas:
         "company services support docs social"
@@ -29,7 +29,7 @@
     flex-direction: column;
     min-width: 0;
 
-    @media (max-width: 1200px) {
+    @media (max-width: 1199px) {
       &--company {
         grid-area: company;
       }

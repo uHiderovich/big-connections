@@ -6,8 +6,28 @@ import 'swiper/css';
 import 'swiper/css/pagination';
 
 function loadSlideImage(swiper, index = swiper.activeIndex) {
-  const img = swiper.slides[index]?.querySelector('img[data-src]');
-  if (!img) return;
+  const slide = swiper.slides[index];
+
+  if (!slide) {
+    return;
+  }
+
+  slide.querySelectorAll('source[data-srcset]').forEach((source) => {
+    source.srcset = source.dataset.srcset;
+    source.removeAttribute('data-srcset');
+  });
+
+  const img = slide.querySelector('img[data-src]');
+
+  if (!img) {
+    return;
+  }
+
+  if (img.dataset.srcset) {
+    img.srcset = img.dataset.srcset;
+    img.removeAttribute('data-srcset');
+  }
+
   img.src = img.dataset.src;
   img.removeAttribute('data-src');
 }

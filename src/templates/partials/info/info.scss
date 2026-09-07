@@ -96,8 +96,12 @@
     padding: 0;
     list-style: none;
 
-    @media (max-width: 1200px) {
+    @media screen and (max-width: 1199px) {
       gap: 20px;
+    }
+
+    @media screen and (max-width: 976px) {
+      grid-template-columns: repeat(2, 210px);
     }
   }
 

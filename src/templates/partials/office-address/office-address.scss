@@ -25,6 +25,13 @@
     font-weight: 400 !important;
     flex-shrink: 0;
 
+    @media screen and (max-width: 976px) {
+      width: max-content !important;
+      max-width: 100%;
+      flex: 1;
+      align-self: stretch;
+    }
+
     &--region {
       width: 260px;
     }

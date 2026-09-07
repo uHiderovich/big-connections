@@ -35,16 +35,6 @@ defineComponent({
     const navDropdownContainer = document.querySelector('.js-nav-dropdown-container');
     const overlay = dropdown.querySelector('.js-nav-dropdown-overlay');
 
-    const refreshLayout = () => {
-      updateContainerHeight(navDropdownContainer);
-      if (dropdown.classList.contains(openClass)) {
-        updateListOffset(dropdown);
-      }
-    };
-
-    refreshLayout();
-    window.addEventListener('resize', refreshLayout);
-
     const closeDropdown = (dropdown) => {
       dropdown.classList.remove(openClass);
       toggle?.setAttribute('aria-expanded', 'false');
@@ -53,6 +43,23 @@ defineComponent({
       navDropdownContainer.classList.remove(containerOpenClass);
       setScrollLocked('nav-dropdown', false);
     };
+
+    const refreshLayout = () => {
+      updateContainerHeight(navDropdownContainer);
+      if (!dropdown.classList.contains(openClass)) {
+        return;
+      }
+
+      if (getComputedStyle(dropdown).display === 'none') {
+        closeDropdown(dropdown);
+        return;
+      }
+
+      updateListOffset(dropdown);
+    };
+
+    refreshLayout();
+    window.addEventListener('resize', refreshLayout);
 
     const closeAll = () => {
       document.querySelectorAll(SELECTOR).forEach((dropdown) => {
@@ -65,13 +72,12 @@ defineComponent({
 
       dropdown.classList.add(openClass);
 
-      refreshLayout();
-
       toggle?.setAttribute('aria-expanded', 'true');
       panel?.setAttribute('aria-hidden', 'false');
       overlay?.setAttribute('aria-hidden', 'false');
       navDropdownContainer.classList.add(containerOpenClass);
       setScrollLocked('nav-dropdown', true);
+      refreshLayout();
     };
 
     toggle?.addEventListener('click', () => {

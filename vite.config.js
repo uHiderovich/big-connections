@@ -1,5 +1,6 @@
 import { existsSync, mkdirSync, readdirSync, renameSync, rmSync, statSync } from 'node:fs';
 import { callbackModalFormFields, callbackSectionFormFields } from './src/data/callback-form-fields.js';
+import { headerNavItems } from './src/data/nav.js';
 import { notFoundPageUrl } from './src/data/routes.js';
 import { cityPanelColumns, regions } from './src/data/regions.js';
 import {
@@ -202,6 +203,7 @@ function nunjucksHtml() {
   });
 
   env.addGlobal('notFoundPageUrl', notFoundPageUrl);
+  env.addGlobal('headerNavItems', headerNavItems);
   env.addGlobal('callbackSectionFormFields', callbackSectionFormFields);
   env.addGlobal('callbackModalFormFields', callbackModalFormFields);
   env.addGlobal('regions', regions);
@@ -217,6 +219,26 @@ function nunjucksHtml() {
   env.addGlobal('privateInternetTariffs', privateInternetTariffs);
   env.addGlobal('homeVideoSurveillanceTariffs', homeVideoSurveillanceTariffs);
   env.addGlobal('televisionTariffs', televisionTariffs);
+  const publicImageExists = (urlPath) => (
+    existsSync(resolve(publicDir, urlPath.replace(/^\//, '')))
+  );
+
+  const heroSrcset = (base, ext) => {
+    const items = [];
+
+    if (publicImageExists(`${base}.${ext}`)) {
+      items.push(`${base}.${ext} 1x`);
+    }
+
+    if (publicImageExists(`${base}@2x.${ext}`)) {
+      items.push(`${base}@2x.${ext} 2x`);
+    }
+
+    return items.join(', ');
+  };
+
+  env.addGlobal('publicImageExists', publicImageExists);
+  env.addGlobal('heroSrcset', heroSrcset);
 
   return {
     name: 'nunjucks-html',

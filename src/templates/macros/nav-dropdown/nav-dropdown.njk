@@ -1,3 +1,16 @@
+{% macro navDropdownItems(items) %}
+  <ul class="nav-dropdown__list">
+    {% for item in items %}
+      <li>
+        <a
+          class="nav-dropdown__link focus hover"
+          href="{{ item.href if item.href is defined else notFoundPageUrl }}"
+        >{{ item.text if item.text is defined else item }}</a>
+      </li>
+    {% endfor %}
+  </ul>
+{% endmacro %}
+
 {% macro navDropdown(id, label, items) %}
   <div class="nav-dropdown js-nav-dropdown">
     <button
@@ -15,16 +28,66 @@
     </button>
 
     <div class="nav-dropdown__panel js-nav-dropdown-panel" id="nav-dropdown-{{ id }}" aria-hidden="true">
-      <ul class="nav-dropdown__list">
-        {% for item in items %}
-          <li>
-            <a
-              class="nav-dropdown__link focus hover"
-              href="{{ item.href if item.href is defined else notFoundPageUrl }}"
-            >{{ item.text if item.text is defined else item }}</a>
-          </li>
+      {{ navDropdownItems(items) }}
+    </div>
+
+    <div class="nav-dropdown__overlay js-nav-dropdown-overlay" aria-hidden="true"></div>
+  </div>
+{% endmacro %}
+
+{% macro navMenuDropdown(groups) %}
+  <div class="nav-dropdown nav-dropdown--compact js-nav-dropdown">
+    <button
+      class="nav-btn simple-box simple-box--blue focus hover js-nav-dropdown-toggle"
+      type="button"
+      aria-label="Меню"
+      aria-expanded="false"
+      aria-controls="nav-dropdown-menu"
+    >
+      <span class="nav-btn__text js-nav-btn-text">Меню</span>
+      <span class="nav-btn__icons">
+        {% set icon = {
+          name: "burger",
+          class: "nav-btn__burger"
+        } %}
+        {% include "partials/icon/icon.njk" %}
+        {% set icon = {
+          name: "cross",
+          class: "nav-btn__cross"
+        } %}
+        {% include "partials/icon/icon.njk" %}
+      </span>
+    </button>
+
+    <div class="nav-dropdown__panel js-nav-dropdown-panel" id="nav-dropdown-menu" aria-hidden="true">
+      <div class="nav-dropdown__columns">
+        {% for group in groups %}
+          <div class="nav-dropdown__column">
+            <p class="nav-dropdown__title">{{ group.label }}</p>
+            {{ navDropdownItems(group.items) }}
+          </div>
         {% endfor %}
-      </ul>
+      </div>
+
+      <div class="nav-dropdown__extra">
+        {% set button = {
+          text: "Подключиться",
+          type: "button",
+          variant: "orange",
+          class: "btn--198",
+          dataBcOpen: "callback-modal"
+        } %}
+        {% include "partials/button/button.njk" %}
+
+        <ul class="nav-dropdown__list">
+          <li>
+            <a class="nav-dropdown__link nav-dropdown__link--accent focus hover" href="{{ notFoundPageUrl }}">Пополнить баланс</a>
+          </li>
+          <li>
+            <a class="nav-dropdown__link nav-dropdown__link--accent focus hover" href="{{ notFoundPageUrl }}">Личный кабинет</a>
+          </li>
+        </ul>
+      </div>
     </div>
 
     <div class="nav-dropdown__overlay js-nav-dropdown-overlay" aria-hidden="true"></div>

@@ -16,8 +16,10 @@
         <span class="city-select__text">Черемхово</span>
       </button>
 
-      <a class="header__support-link focus" href="{{ notFoundPageUrl }}">Техподдержка</a>
-      <a class="header__phone focus" href="tel:+78004441109">+7 800 444 11 09</a>
+      <div class="header__support-link">
+        <span class="header__support-link-text">Техподдержка</span>
+        <a class="header__phone focus" href="tel:+78004441109">+7 800 444 11 09</a>
+      </div>
     </div>
 
     {% include "partials/city-panel/city-panel.njk" %}
@@ -38,25 +40,13 @@
     </a>
 
     <nav class="header__nav" aria-label="Основная навигация">
-      {% from "macros/nav-dropdown/nav-dropdown.njk" import navDropdown %}
+      {% from "macros/nav-dropdown/nav-dropdown.njk" import navDropdown, navMenuDropdown %}
 
-      {{ navDropdown("about", "О компании", [
-        { text: "Деятельность", href: "/pages/activity.html" },
-        { text: "Вакансии", href: "/pages/vacancies.html" },
-        { text: "Инструкции", href: "/pages/instructions.html" },
-        { text: "Новости", href: "/pages/news.html" },
-        { text: "Контакты", href: "/pages/contacts.html" }
-      ]) }}
+      {% for group in headerNavItems %}
+      {{ navDropdown(group.id, group.label, group.items) }}
+      {% endfor %}
 
-      {{ navDropdown("tariffs", "Тарифы и услуги", [
-        "Интернет в много-квартирный дом",
-        { text: "Интернет для частного сектора", href: "/pages/private-internet.html" },
-        "Домофония",
-        { text: "Видеонаблюдение", href: "/pages/home-video-surveillance.html" },
-        { text: "Радио", href: notFoundPageUrl },
-        { text: "Телевидение", href: "/pages/television.html" },
-        "Рассрочка"
-      ]) }}
+      {{ navMenuDropdown(headerNavItems) }}
     </nav>
 
     <div class="header__actions">

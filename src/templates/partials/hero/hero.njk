@@ -1,19 +1,66 @@
+{% macro heroSlideSources(index, eager) %}
+{% set desktop = "/images/slide-" ~ index %}
+{% set mobile = "/images/slide-" ~ index ~ "-mob" %}
+{% set formats = [
+    { type: "image/avif", ext: "avif" },
+    { type: "image/webp", ext: "webp" },
+    { type: "image/jpeg", ext: "jpg" }
+  ] %}
+
+{% for format in formats %}
+{% set mobileSrcset = heroSrcset(mobile, format.ext) %}
+{% if mobileSrcset %}
+<source
+  media="(max-width: 765px)"
+  type="{{ format.type }}"
+  {% if eager %}
+  srcset="{{ mobileSrcset }}"
+  {% else %}
+  data-srcset="{{ mobileSrcset }}"
+  {% endif %}
+>
+{% endif %}
+{% endfor %}
+
+{% for format in formats %}
+{% set desktopSrcset = heroSrcset(desktop, format.ext) %}
+{% if desktopSrcset %}
+<source
+  type="{{ format.type }}"
+  {% if eager %}
+  srcset="{{ desktopSrcset }}"
+  {% else %}
+  data-srcset="{{ desktopSrcset }}"
+  {% endif %}
+>
+{% endif %}
+{% endfor %}
+{% endmacro %}
+
 <section class="hero">
   <div class="swiper hero__slider js-hero-slider">
     <div class="swiper-wrapper">
       {% for i in [1, 2, 3] %}
+      {% set eager = loop.first %}
+      {% set desktop = "/images/slide-" ~ i %}
+      {% set desktopSrcset = heroSrcset(desktop, "jpg") %}
       <div class="swiper-slide hero__slide">
-        <img
-          {% if loop.first %}
-          src="/images/slide-{{i}}.jpg"
-          fetchpriority="high"
-          {% else %}
-          data-src="/images/slide-{{i}}.jpg"
-          {% endif %}
-          alt="Hero"
-          class="hero__slide-image"
-          decoding="async"
-        >
+        <picture>
+          {{ heroSlideSources(i, eager) }}
+          <img
+            class="hero__slide-image"
+            alt="Hero"
+            decoding="async"
+            {% if eager %}
+            src="{{ desktop }}@2x.jpg"
+            {% if desktopSrcset %}srcset="{{ desktopSrcset }}"{% endif %}
+            fetchpriority="high"
+            {% else %}
+            data-src="{{ desktop }}@2x.jpg"
+            {% if desktopSrcset %}data-srcset="{{ desktopSrcset }}"{% endif %}
+            {% endif %}
+          >
+        </picture>
       </div>
       {% endfor %}
     </div>

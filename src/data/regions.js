@@ -64,6 +64,7 @@ export const regions = [
 
 export const cityPanelColumns = [
   ['irkutsk'],
-  ['krasnoyarsk', 'buryatia'],
+  ['krasnoyarsk'],
+  ['buryatia'],
   ['jewish-ao'],
 ];

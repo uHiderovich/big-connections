@@ -28,9 +28,13 @@ $city-panel-ease: cubic-bezier(0.22, 1, 0.36, 1);
   &__content {
     position: relative;
     z-index: 2;
+    display: flex;
+    flex-direction: column;
     flex-shrink: 0;
+    max-height: 100%;
     padding-top: 11px;
     padding-bottom: 50px;
+    overflow: hidden;
     background: var(--color-white);
     opacity: 0;
     visibility: hidden;
@@ -57,6 +61,9 @@ $city-panel-ease: cubic-bezier(0.22, 1, 0.36, 1);
   }
 
   &__inner {
+    display: flex;
+    flex-direction: column;
+    min-height: 0;
     opacity: 1;
   }
 
@@ -64,8 +71,13 @@ $city-panel-ease: cubic-bezier(0.22, 1, 0.36, 1);
     position: relative;
     z-index: 2;
     display: flex;
+    flex-shrink: 0;
     align-items: center;
     gap: 30px;
+
+    @media (max-width: 600px) {
+      justify-content: space-between;
+    }
   }
 
   &__city-select {
@@ -76,35 +88,67 @@ $city-panel-ease: cubic-bezier(0.22, 1, 0.36, 1);
     position: relative;
     z-index: 2;
     width: 176px;
-    height: 36px;
+    min-height: 36px;
     font-size: 14px;
   }
 
   &__title {
+    flex-shrink: 0;
     margin: 30px 0 0;
     color: var(--color-dark-grey);
   }
 
   &__grid {
-    display: grid;
-    grid-template-columns: repeat(3, 180px);
+    display: flex;
+    flex-wrap: wrap;
+    flex: 1 1 auto;
+    align-items: flex-start;
+    align-content: flex-start;
     gap: 20px;
+    min-height: 0;
     margin-top: 30px;
+    overflow-y: auto;
+
+    @media (max-width: 600px) {
+      flex-direction: column;
+      flex-wrap: nowrap;
+      gap: 20px;
+    }
+  }
+
+  &__stack {
+    display: flex;
+    flex-direction: column;
+    flex: 0 0 180px;
+    gap: 62px;
+    width: 180px;
+
+    @media (max-width: 765px) {
+      display: contents;
+    }
+
+    @media (max-width: 600px) {
+      flex: 1;
+      width: 100%;
+    }
   }
 
   &__col {
     display: flex;
     flex-direction: column;
+    flex: 0 0 180px;
+    width: 180px;
+
+    @media (max-width: 600px) {
+      flex: 1;
+      width: 100%;
+    }
   }
 
   &__group {
     display: flex;
     flex-direction: column;
     gap: 10px;
-
-    &--spaced {
-      margin-top: 62px;
-    }
   }
 
   &__region {

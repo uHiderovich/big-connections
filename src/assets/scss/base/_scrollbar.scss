@@ -1,13 +1,19 @@
 html {
   scrollbar-gutter: stable;
+
+  @media screen and (max-width: 1199px) {
+    scrollbar-gutter: auto;
+  }
+
+  &.scroll-locked {
+    overflow: hidden;
+  }
 }
 
 body {
-  &.scroll-locked {
+  &.scroll-locked--fixed {
     position: fixed;
-    inset-inline: 0;
-    width: 100%;
-    padding-right: var(--scrollbar-width, 0px);
+    left: 0;
   }
 }
 
