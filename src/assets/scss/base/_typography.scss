@@ -9,3 +9,9 @@
 .section-title--center {
   text-align: center;
 }
+
+.section-title--mobile-mb {
+  @media screen and (max-width: 768px) {
+    margin-bottom: 20px;
+  }
+}

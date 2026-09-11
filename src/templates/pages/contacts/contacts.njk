@@ -1,31 +1,31 @@
 <ul class="contacts-page__list">
   {% for section in contactSections %}
-    <li class="contacts-page__item">
-      <h2 class="section-title">{{ section.title }}</h2>
+  <li class="contacts-page__item">
+    <h2 class="section-title section-title--mobile-mb">{{ section.title }}</h2>
 
-      {% set divider = { space: true } %}
-      {% include "partials/divider/divider.njk" %}
+    {% set divider = { space: true } %}
+    {% include "partials/divider/divider.njk" %}
 
-      {% if section.type == 'phone' %}
-        <a class="simple-box simple-box--blue focus" href="{{ headerPhone.href }}">
-          {{ headerPhone.display }}
-        </a>
-      {% else %}
-        <ul class="contacts-page__social">
-          {% for link in socialLinks %}
-            <li>
-              <a class="simple-box simple-box--blue contacts-page__social-link focus hover" href="{{ link.href }}" target="_blank" rel="noopener noreferrer">
-                {% set icon = {
+    {% if section.type == 'phone' %}
+    <a class="simple-box simple-box--blue focus" href="{{ headerPhone.href }}">
+      {{ headerPhone.display }}
+    </a>
+    {% else %}
+    <ul class="contacts-page__social">
+      {% for link in socialLinks %}
+      <li>
+        <a class="simple-box simple-box--blue contacts-page__social-link focus hover" href="{{ link.href }}" target="_blank" rel="noopener noreferrer">
+          {% set icon = {
                   name: link.icon,
                   class: "contacts-page__social-icon"
                 } %}
-                {% include "partials/icon/icon.njk" %}
-                <span>{{ link.label }}</span>
-              </a>
-            </li>
-          {% endfor %}
-        </ul>
-      {% endif %}
-    </li>
+          {% include "partials/icon/icon.njk" %}
+          <span>{{ link.label }}</span>
+        </a>
+      </li>
+      {% endfor %}
+    </ul>
+    {% endif %}
+  </li>
   {% endfor %}
 </ul>

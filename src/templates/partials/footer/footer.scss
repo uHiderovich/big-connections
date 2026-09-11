@@ -27,8 +27,8 @@
       grid-template-columns: repeat(6, 1fr);
       grid-template-areas:
         "company company services services support support"
-        "docs docs docs social social social"
-        "docs docs docs app app app";
+        "docs docs social social empty empty"
+        "docs docs app app empty empty";
       column-gap: 20px;
       row-gap: 40px;
     }
@@ -86,11 +86,6 @@
 
       &--docs {
         grid-area: docs;
-      }
-
-      &--social,
-      &--app {
-        align-self: start;
       }
 
       &--social {

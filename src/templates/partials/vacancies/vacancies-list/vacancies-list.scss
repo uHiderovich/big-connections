@@ -7,11 +7,23 @@
     display: grid;
     grid-template-columns: repeat(4, 1fr);
     gap: 1px;
+
+    @media screen and (max-width: 1000px) {
+      display: flex;
+      flex-direction: column;
+    }
   }
 
   &__cell {
     height: 100%;
     align-items: start !important;
+
+    @media screen and (max-width: 1000px) {
+      flex-direction: column;
+      justify-content: center;
+      width: 100%;
+      min-height: 58px;
+    }
 
     &--head {
       font-weight: 700;
@@ -25,9 +37,25 @@
     li {
       margin-bottom: 20px;
 
+      @media screen and (max-width: 1000px) {
+        margin-bottom: 10px;
+      }
+
       &::marker {
         color: var(--color-dark-grey);
       }
+    }
+  }
+
+  &__cell-label {
+    display: none;
+    margin: 0 0 10px;
+    font-size: 16px;
+    font-weight: 700;
+    line-height: 20px;
+
+    @media screen and (max-width: 1000px) {
+      display: block;
     }
   }
 }

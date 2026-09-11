@@ -3,12 +3,16 @@
 }
 
 .callback-modal {
-  width: var(--callback-modal-width);
-  max-width: 100%;
+  width: 100%;
+  max-width: var(--callback-modal-width);
   margin-inline: auto;
   padding: 50px 40px;
   background: var(--color-light-blue);
   border-radius: 20px;
+
+  @media screen and (max-width: 768px) {
+    padding: 50px 20px;
+  }
 
   &__title {
     margin-bottom: 20px;
@@ -17,5 +21,6 @@
 }
 
 .callback-modal-result {
-  width: var(--callback-modal-width);
+  width: 100%;
+  max-width: var(--callback-modal-width);
 }

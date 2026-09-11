@@ -11,18 +11,22 @@
 
   &__container {
     position: relative;
+
+    @media screen and (max-width: 768px) {
+      margin-inline: 20px;
+    }
   }
 
   &__close {
     position: absolute;
-    top: 20px;
-    right: 20px;
+    top: 0px;
+    right: 0px;
     z-index: 2;
     display: flex;
     align-items: center;
     justify-content: center;
-    width: 24px;
-    height: 24px;
+    width: 56px;
+    height: 56px;
     padding: 0;
     border: none;
     background: none;
@@ -31,8 +35,8 @@
   }
 
   &__close-icon {
-    width: 16px;
-    height: 16px;
+    width: 24px;
+    height: 24px;
     flex-shrink: 0;
   }
 }
