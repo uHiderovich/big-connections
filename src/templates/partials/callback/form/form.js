@@ -1,6 +1,7 @@
 import JustValidate from 'just-validate';
 import IMask from 'imask';
 import { defineComponent } from '@/js/helpers/defineComponent';
+import { initCallbackSelects } from '@/templates/partials/select/select';
 
 const validClass = 'callback-form__field--valid';
 const invalidClass = 'callback-form__field--invalid';
@@ -87,6 +88,8 @@ function initForm(config) {
   if (!form) {
     return null;
   }
+
+  initCallbackSelects(form);
 
   form.querySelectorAll('[data-validate="phone"]').forEach((phone) => {
     IMask(phone, {

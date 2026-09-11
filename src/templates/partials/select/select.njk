@@ -1,10 +1,13 @@
 <select
-  class="select callback-form__field"
+  class="select callback-form__field js-choices-select"
   name="{{ field.name }}"
   aria-label="{{ field.placeholder }}"
+  data-placeholder="{{ field.placeholder }}"
+  {% if field.controls %} data-controls="{{ field.controls }}"{% endif %}
+  {% if field.disabled %} disabled{% endif %}
 >
-  <option value="" selected disabled hidden>{{ field.placeholder }}</option>
-  {% for option in field.options %}
-    <option value="{{ option.value }}">{{ option.label }}</option>
+  <option value="" selected disabled>{{ field.placeholder }}</option>
+  {% for option in field.options | default([]) %}
+  <option value="{{ option.value }}">{{ option.label }}</option>
   {% endfor %}
 </select>

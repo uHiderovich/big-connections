@@ -1,3 +1,25 @@
+import { privateInternetTariffs } from './private-internet-tariffs.js';
+
+function toTariffOption(title, prefix) {
+  const speed = title.match(/\d+/)?.[0] ?? title;
+
+  return {
+    value: `${prefix}-internet-${speed}`,
+    label: title,
+  };
+}
+
+export const callbackTariffOptionsByType = {
+  apartments: [
+    toTariffOption('Интернет 50', 'apartments'),
+    toTariffOption('Интернет 100', 'apartments'),
+    toTariffOption('Интернет 200', 'apartments'),
+  ],
+  'private-sector': privateInternetTariffs.map((tariff) =>
+    toTariffOption(tariff.title, 'private'),
+  ),
+};
+
 export const callbackSectionFormFields = [
   {
     type: 'text',
@@ -47,12 +69,19 @@ export const callbackModalFormFields = [
   },
   {
     type: 'select',
+    name: 'tariffType',
+    placeholder: 'Выберите тип подключения',
+    controls: 'tariff',
+    options: [
+      { value: 'apartments', label: 'Для квартир' },
+      { value: 'private-sector', label: 'Для частного сектора' },
+    ],
+  },
+  {
+    type: 'select',
     name: 'tariff',
     placeholder: 'Выберите тариф',
-    options: [
-      { value: 'internet-50', label: 'Интернет 50' },
-      { value: 'internet-100', label: 'Интернет 100' },
-      { value: 'internet-200', label: 'Интернет 200' },
-    ],
+    disabled: true,
+    options: [],
   },
 ];

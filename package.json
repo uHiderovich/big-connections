@@ -41,6 +41,7 @@
     "not op_mini all"
   ],
   "dependencies": {
+    "choices.js": "^11.2.4",
     "imask": "^7.6.1",
     "just-validate": "^4.3.0",
     "micromodal": "^0.7.0",
