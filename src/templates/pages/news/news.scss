@@ -1,4 +1,9 @@
 .news-page {
+
+  @media screen and (max-width: 768px) {
+    margin-inline: -20px;
+  }
+
   &__content {
     position: relative;
     z-index: 1;
@@ -10,17 +15,29 @@
     font-size: 26px;
     font-weight: 700;
     line-height: 1;
+
+    @media screen and (max-width: 768px) {
+      margin-bottom: 30px;
+    }
   }
 
   &__list {
     display: flex;
     flex-direction: column;
     gap: 50px;
+
+    @media screen and (max-width: 768px) {
+      gap: 60px;
+    }
   }
 
   &__item {
     display: flex;
     gap: 30px;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
   }
 
   &__aside {

@@ -23,16 +23,16 @@
 
     <ul class="news-page__list">
       {% for item in newsPageItems %}
-        <li class="news-page__item">
-          <div class="news-page__aside">
-            <div class="news-page__image"></div>
-            <time class="news-page__date" datetime="{{ item.datetime }}">{{ item.date }}</time>
-          </div>
+      <li class="news-page__item">
+        <div class="news-page__aside">
+          <div class="news-page__image"></div>
+          <time class="news-page__date" datetime="{{ item.datetime }}">{{ item.date }}</time>
+        </div>
 
-          <div class="news-page__body">
-            <p class="news-page__text">{{ item.text | safe }}</p>
-          </div>
-        </li>
+        <div class="news-page__body">
+          <p class="news-page__text">{{ item.text | safe }}</p>
+        </div>
+      </li>
       {% endfor %}
     </ul>
   </div>

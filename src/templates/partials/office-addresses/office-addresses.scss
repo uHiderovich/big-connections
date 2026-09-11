@@ -14,12 +14,24 @@
     margin: 0;
     padding: 0;
     list-style: none;
+
+    @media screen and (max-width: 1000px) {
+      gap: 20px;
+    }
   }
 
   &__row {
     display: flex;
     gap: 1px;
     align-items: stretch;
+
+    @media screen and (max-width: 1000px) {
+      flex-wrap: wrap;
+    }
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+    }
   }
 
   &__entries {
@@ -27,30 +39,77 @@
     flex-direction: column;
     gap: 1px;
     flex: 1;
+
+    @media screen and (max-width: 1000px) {
+      flex: 0 0 100%;
+      width: 100%;
+    }
+
+    @media screen and (max-width: 768px) {
+      flex: none;
+      width: 100%;
+    }
   }
 
   &__entry {
     display: flex;
     gap: 1px;
     align-items: stretch;
+
+    @media screen and (max-width: 1000px) {
+      display: grid;
+      grid-template-columns: 1fr 1fr;
+      gap: 1px;
+    }
   }
 
   &__cell {
     flex-shrink: 0;
+
+    @media screen and (max-width: 1000px) {
+      min-height: 58px;
+    }
 
     &--region {
       max-width: 260px !important;
       flex: 1;
       align-self: stretch;
       background-color: var(--color-light-blue);
+
+      @media screen and (max-width: 1000px) {
+        max-width: none !important;
+      }
+
+      @media screen and (max-width: 768px) {
+        flex: none;
+        width: 100% !important;
+      }
     }
 
     &--location {
       width: 299px !important;
+
+      @media screen and (max-width: 1000px) {
+        grid-column: 1 / -1;
+        width: auto !important;
+      }
+
+      @media screen and (max-width: 768px) {
+        grid-column: 1 / -1;
+        width: 100% !important;
+      }
     }
 
     &--schedule {
       width: 164px !important;
+
+      @media screen and (max-width: 1000px) {
+        width: auto !important;
+      }
+
+      @media screen and (max-width: 768px) {
+        width: auto !important;
+      }
     }
 
     &--phone {
@@ -58,6 +117,17 @@
       max-width: 233px !important;
       min-width: 150px;
       flex: 1;
+
+      @media screen and (max-width: 1000px) {
+        max-width: none !important;
+        min-width: 0;
+        flex: none;
+      }
+
+      @media screen and (max-width: 768px) {
+        justify-content: flex-start;
+        text-align: left;
+      }
     }
   }
 

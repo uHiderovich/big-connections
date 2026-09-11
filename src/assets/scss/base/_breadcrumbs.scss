@@ -2,6 +2,10 @@
   padding-inline: 100px;
   margin-bottom: 30px;
 
+  @media screen and (max-width: 1000px) {
+    padding-inline: 0;
+  }
+
   &__list {
     display: flex;
     align-items: center;

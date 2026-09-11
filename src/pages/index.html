@@ -4,13 +4,15 @@
 {% set description = "Главная страница статического сайта Большие Связи" %}
 
 {% block content %}
-  {% include "partials/hero/hero.njk" %}
+{% include "partials/hero/hero.njk" %}
 
-  {% include "partials/info/info.njk" %}
+{% include "partials/info/info.njk" %}
 
+<div class="container">
   {% include "partials/callback/callback.njk" %}
+</div>
 
-  {% include "partials/news/news.njk" %}
+{% include "partials/news/news.njk" %}
 
-  {% include "partials/office-address/office-address.njk" %}
+{% include "partials/office-address/office-address.njk" %}
 {% endblock %}

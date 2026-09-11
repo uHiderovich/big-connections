@@ -35,6 +35,10 @@
 .page-content {
   padding-block: 50px;
 
+  @media screen and (max-width: 768px) {
+    padding-block: 30px;
+  }
+
   &--not-bottom {
     padding-bottom: 0;
   }
@@ -50,8 +54,8 @@
   background: var(--color-white);
   box-shadow: 24px 4px 36px 0px rgba(0, 100, 151, 0.1);
 
-  @media (max-width: 1150px) {
-    padding: 50px;
+  @media screen and (max-width: 1150px) {
+    padding: 50px 20px;
   }
 }
 
@@ -62,8 +66,12 @@
   background-color: rgba(255, 255, 255, 0.3);
   padding: 50px 100px;
 
-  @media (max-width: 1150px) {
+  @media screen and (max-width: 1150px) {
     padding: 50px;
+  }
+
+  @media screen and (max-width: 768px) {
+    padding-inline: 20px;
   }
 
   &::after {

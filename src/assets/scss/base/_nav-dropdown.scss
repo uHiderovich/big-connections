@@ -131,6 +131,10 @@
     display: flex;
     gap: 70px;
     margin-left: var(--nav-dropdown-list-offset, 20px);
+
+    @media screen and (max-width: 768px) {
+      gap: 20px;
+    }
   }
 
   &__title {
