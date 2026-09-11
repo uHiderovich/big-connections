@@ -4,6 +4,10 @@
     max-width: 960px;
     margin-inline: auto;
     padding-block: 100px;
+
+    @media screen and (max-width: 768px) {
+      padding-block: 80px;
+    }
   }
 
   &__title {
@@ -12,11 +16,20 @@
     font-size: 26px;
     font-weight: 700;
     line-height: 1;
+
+    @media screen and (max-width: 768px) {
+      text-align: left;
+    }
   }
 
   &__blocks {
     display: flex;
     justify-content: space-between;
+
+    @media screen and (max-width: 768px) {
+      flex-direction: column;
+      gap: 1px;
+    }
   }
 
   &__block {
@@ -30,6 +43,20 @@
       max-width: 100%;
       flex: 1;
       align-self: stretch;
+    }
+
+    @media screen and (max-width: 768px) {
+      width: auto !important;
+      max-width: none;
+      height: auto !important;
+      min-height: auto;
+      flex: none;
+      align-self: auto;
+      text-align: left;
+
+      br {
+        display: none;
+      }
     }
 
     &--region {
@@ -49,6 +76,11 @@
       justify-content: center;
       width: 233px;
       text-align: center;
+
+      @media screen and (max-width: 768px) {
+        justify-content: flex-start;
+        text-align: left;
+      }
     }
   }
 

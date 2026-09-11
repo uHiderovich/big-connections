@@ -3,7 +3,7 @@
   align-items: center;
   justify-content: space-between;
   width: 100%;
-  min-height: 52px;
+  min-height: 58px !important;
   height: auto;
   padding: 10px 20px;
   border: 0;
@@ -32,6 +32,10 @@
 .region-dropdown {
   width: 100%;
 
+  @media screen and (max-width: 768px) {
+    padding-top: 20px;
+  }
+
   &--open {
     .region-btn {
       background: transparent;
@@ -45,6 +49,7 @@
       max-height: 500px;
       opacity: 1;
       visibility: visible;
+      padding-top: 40px;
     }
   }
 
@@ -63,6 +68,12 @@
       opacity 0.3s cubic-bezier(0.22, 1, 0.36, 1),
       max-height 0.3s cubic-bezier(0.22, 1, 0.36, 1),
       visibility 0.3s cubic-bezier(0.22, 1, 0.36, 1);
+
+
+    @media screen and (max-width: 768px) {
+
+      margin-left: -125px;
+    }
   }
 
   &__link {

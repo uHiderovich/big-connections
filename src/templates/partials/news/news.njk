@@ -18,21 +18,21 @@
 
 <section class="news">
   <div class="container">
-    <div class="white-box">
+    <div class="white-box news__box">
       <h2 class="news__title">Новости</h2>
 
       <ul class="news__list">
         {% for item in newsItems %}
-          <li class="news__item">
-            <div class="news__image">
-              <img src="{{ item.image }}" alt="{{ item.title }}">
-            </div>
+        <li class="news__item">
+          <div class="news__image">
+            <img src="{{ item.image }}" alt="{{ item.title }}">
+          </div>
 
-            <div class="news__content">
-              <p class="news__text">{{ item.text | safe }}</p>
-              <a class="news__link focus" href="{{ item.href }}">Читать...</a>
-            </div>
-          </li>
+          <div class="news__content">
+            <p class="news__text">{{ item.text | safe }}</p>
+            <a class="news__link focus" href="{{ item.href }}">Читать...</a>
+          </div>
+        </li>
         {% endfor %}
       </ul>
     </div>

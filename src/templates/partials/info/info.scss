@@ -1,8 +1,19 @@
 .info {
   padding-top: 50px;
 
+  .container {
+    @media screen and (max-width: 768px) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
   &__box {
     padding-block: 70px !important;
+
+    @media screen and (max-width: 768px) {
+      padding-inline: 20px !important;
+    }
   }
 
   &__sections {
@@ -15,12 +26,22 @@
 
   &__section-title {
     margin-bottom: 30px;
+
+    &.section-title--center {
+      @media screen and (max-width: 768px) {
+        text-align: left;
+      }
+    }
   }
 
   &__about-text {
     margin: 0;
     text-align: center;
     line-height: 1.2;
+
+    @media screen and (max-width: 768px) {
+      text-align: left;
+    }
   }
 
   &__promo-grid {
@@ -31,11 +52,20 @@
     margin: 0;
     padding: 0;
     list-style: none;
+
+    @media screen and (max-width: 768px) {
+      grid-template-columns: 1fr;
+      justify-content: stretch;
+    }
   }
 
   &__promo-card {
     position: relative;
     width: 307px;
+
+    @media screen and (max-width: 768px) {
+      width: 100%;
+    }
     padding: 18px 20px;
     border-radius: 20px;
     background: var(--color-white);
@@ -103,6 +133,12 @@
     @media screen and (max-width: 976px) {
       grid-template-columns: repeat(2, 210px);
     }
+
+    @media screen and (max-width: 768px) {
+      grid-template-columns: 1fr;
+      gap: 20px;
+      justify-content: stretch;
+    }
   }
 
   &__coverage-item {
@@ -111,8 +147,14 @@
     align-items: center;
     width: 100%;
 
+    @media screen and (max-width: 768px) {
+      flex-direction: row;
+      gap: 25px;
+    }
+
     .region-dropdown {
       flex: 1;
+      min-width: 0;
     }
   }
 
@@ -123,5 +165,10 @@
     border-radius: 50%;
     object-fit: cover;
     border: 1px solid var(--color-stroke-blue);
+    flex-shrink: 0;
+
+    @media screen and (max-width: 768px) {
+      margin-bottom: 0;
+    }
   }
 }

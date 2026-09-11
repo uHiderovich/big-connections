@@ -3,6 +3,11 @@
   margin-inline: auto;
   padding-block: 100px;
 
+  @media screen and (max-width: 768px) {
+    width: 100%;
+    padding-block: 80px;
+  }
+
   &--success .callback__result--success,
   &--error .callback__result--error {
     opacity: 1;
@@ -12,6 +17,12 @@
 
   &__title {
     margin-bottom: 30px;
+
+    @media screen and (max-width: 768px) {
+      width: 280px;
+      text-align: left !important;
+      margin-bottom: 20px;
+    }
   }
 
   &__form-view {
@@ -19,6 +30,10 @@
 
     &--position-unset {
       position: unset;
+    }
+
+    @media screen and (max-width: 768px) {
+      padding: 0 20px;
     }
   }
 

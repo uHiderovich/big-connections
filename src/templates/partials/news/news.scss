@@ -1,10 +1,27 @@
 .news {
+  .container {
+    @media screen and (max-width: 768px) {
+      padding-left: 0;
+      padding-right: 0;
+    }
+  }
+
+  &__box {
+    @media screen and (max-width: 768px) {
+      padding-inline: 20px !important;
+    }
+  }
+
   &__title {
     margin-bottom: 30px;
     font-family: 'Ubuntu', sans-serif;
     font-size: 26px;
     font-weight: 700;
     line-height: 1;
+
+    @media screen and (max-width: 768px) {
+      text-align: left;
+    }
   }
 
   &__list {
@@ -15,7 +32,7 @@
 
   &__item {
     display: flex;
-    gap: 30px;
+    gap: 20px;
   }
 
   &__image {
