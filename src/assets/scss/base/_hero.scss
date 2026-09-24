@@ -2,11 +2,11 @@
   display: grid;
   position: relative;
   width: 100%;
+  height: 400px;
   overflow: hidden;
-  aspect-ratio: 1200 / 400;
 
   @media screen and (max-width: 976px) {
-    aspect-ratio: 375 / 525;
+    height: auto;
   }
 
   &__slider,
