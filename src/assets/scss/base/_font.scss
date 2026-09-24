@@ -3,9 +3,7 @@
   font-style: normal;
   font-weight: 400;
   font-display: swap;
-  src:
-    url('/fonts/ubuntu/ubuntu-regular.woff2') format('woff2'),
-    url('/fonts/ubuntu/ubuntu-regular.woff') format('woff');
+  src: url('/fonts/ubuntu/ubuntu-regular.woff2') format('woff2');
 }
 
 @font-face {
@@ -13,7 +11,29 @@
   font-style: normal;
   font-weight: 700;
   font-display: swap;
-  src:
-    url('/fonts/ubuntu/ubuntu-bold.woff2') format('woff2'),
-    url('/fonts/ubuntu/ubuntu-bold.woff') format('woff');
+  src: url('/fonts/ubuntu/ubuntu-bold.woff2') format('woff2');
+}
+
+// Метрики подогнаны под Ubuntu по ширине кириллического и латинского текста,
+// чтобы подмена шрифта после загрузки не сдвигала строки
+@font-face {
+  font-family: 'Ubuntu Fallback';
+  font-style: normal;
+  font-weight: 400;
+  src: local('Roboto'), local('Roboto-Regular');
+  size-adjust: 100.12%;
+  ascent-override: 93.08%;
+  descent-override: 18.88%;
+  line-gap-override: 2.8%;
+}
+
+@font-face {
+  font-family: 'Ubuntu Fallback';
+  font-style: normal;
+  font-weight: 700;
+  src: local('Roboto Bold'), local('Roboto-Bold');
+  size-adjust: 104.56%;
+  ascent-override: 89.13%;
+  descent-override: 18.08%;
+  line-gap-override: 2.68%;
 }
