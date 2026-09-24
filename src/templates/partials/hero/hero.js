@@ -1,8 +1,9 @@
 import Swiper from 'swiper';
-import { Pagination, EffectFade } from 'swiper/modules';
+import { Pagination, EffectFade, Autoplay } from 'swiper/modules';
 import { defineComponent } from '@/js/helpers'
 
 import 'swiper/css';
+import 'swiper/css/effect-fade';
 import 'swiper/css/pagination';
 
 function loadSlideImage(swiper, index = swiper.activeIndex) {
@@ -38,11 +39,20 @@ defineComponent({
     const pagination = slider.querySelector('.hero__pagination');
 
     new Swiper(slider, {
-      modules: [Pagination, EffectFade],
+      modules: [Pagination, EffectFade, Autoplay],
       effect: 'fade',
+      fadeEffect: {
+        crossFade: true,
+      },
+      speed: 600,
+      loop: true,
       pagination: {
         el: pagination,
         clickable: true,
+      },
+      autoplay: {
+        delay: 3000,
+        disableOnInteraction: false,
       },
       on: {
         init(swiper) {

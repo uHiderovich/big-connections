@@ -41,6 +41,19 @@
 {% endfor %}
 {% endmacro %}
 
+<style>
+  .hero {
+    width: 100%;
+    aspect-ratio: 1200 / 400;
+  }
+
+  @media screen and (max-width: 765px) {
+    .hero {
+      aspect-ratio: 375 / 525;
+    }
+  }
+</style>
+
 <section class="hero container container--no-padding">
   <div class="swiper hero__slider js-hero-slider">
     <div class="swiper-wrapper">
@@ -56,7 +69,7 @@
             alt="Hero"
             width="1200"
             height="400"
-            decoding="async"
+            {% if eager %}decoding="sync"{% else %}decoding="async"{% endif %}
             {% if eager %}
             src="{{ desktop }}@2x.jpg"
             {% if desktopSrcset %}srcset="{{ desktopSrcset }}"{% endif %}
