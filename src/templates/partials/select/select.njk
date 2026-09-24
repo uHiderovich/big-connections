@@ -3,11 +3,11 @@
   name="{{ field.name }}"
   aria-label="{{ field.placeholder }}"
   data-placeholder="{{ field.placeholder }}"
-  {% if field.controls %} data-controls="{{ field.controls }}"{% endif %}
+  {% if field.dependsOn %} data-depends-on="{{ field.dependsOn }}"{% endif %}
   {% if field.disabled %} disabled{% endif %}
 >
   <option value="" selected disabled>{{ field.placeholder }}</option>
   {% for option in field.options | default([]) %}
-  <option value="{{ option.value }}">{{ option.label }}</option>
+  <option value="{{ option.value }}"{% if option.parent %} data-parent="{{ option.parent }}"{% endif %}>{{ option.label }}</option>
   {% endfor %}
 </select>

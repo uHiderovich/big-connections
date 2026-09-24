@@ -1,8 +1,6 @@
 import Choices from 'choices.js';
 import 'choices.js/public/assets/styles/choices.css';
 
-import { callbackTariffOptionsByType } from '@/data/callback-form-fields';
-
 const choicesConfig = {
   searchEnabled: false,
   itemSelectText: '',
@@ -21,17 +19,59 @@ function getPlaceholderChoice(select) {
   };
 }
 
-function setTariffChoices(tariffChoices, select, type) {
-  const options = callbackTariffOptionsByType[type] ?? [];
+function getDependentOptions(select) {
+  return [...select.querySelectorAll('option[data-parent]')].map((option) => ({
+    value: option.value,
+    label: option.textContent.trim(),
+    parent: option.dataset.parent,
+    selected: option.selected,
+  }));
+}
 
-  tariffChoices.setChoices([getPlaceholderChoice(select), ...options], 'value', 'label', true);
+function setDependentChoices({ choices, select, options, parentValue, keepSelected = false }) {
+  const filteredOptions = options
+    .filter((option) => option.parent === parentValue)
+    .map(({ value, label, selected }) => ({
+      value,
+      label,
+      selected: keepSelected && selected,
+    }));
 
-  if (options.length) {
-    tariffChoices.enable();
+  choices.setChoices([getPlaceholderChoice(select), ...filteredOptions], 'value', 'label', true, true, true);
+
+  if (filteredOptions.length) {
+    choices.enable();
     return;
   }
 
-  tariffChoices.disable();
+  choices.disable();
+}
+
+function initDependentSelect({ form, select, choices, options }) {
+  const parentSelect = form.querySelector(`[name="${select.dataset.dependsOn}"]`);
+
+  if (!parentSelect) {
+    return;
+  }
+
+  if (parentSelect.value) {
+    setDependentChoices({
+      choices,
+      select,
+      options,
+      parentValue: parentSelect.value,
+      keepSelected: true,
+    });
+  }
+
+  parentSelect.addEventListener('change', () => {
+    setDependentChoices({
+      choices,
+      select,
+      options,
+      parentValue: parentSelect.value,
+    });
+  });
 }
 
 export function initCallbackSelects(form) {
@@ -41,27 +81,25 @@ export function initCallbackSelects(form) {
     return;
   }
 
-  const instances = new Map();
+  const dependentSelects = selects.filter((select) => select.dataset.dependsOn);
+  const dependentOptions = new Map(
+    dependentSelects.map((select) => [select, getDependentOptions(select)]),
+  );
 
   selects.forEach((select) => {
     const choices = new Choices(select, choicesConfig);
 
-    instances.set(select.name, choices);
-
     if (select.disabled) {
       choices.disable();
     }
-  });
 
-  const typeSelect = form.querySelector('[data-controls="tariff"]');
-  const tariffSelect = form.querySelector('[name="tariff"]');
-  const tariffChoices = instances.get('tariff');
-
-  if (!typeSelect || !tariffSelect || !tariffChoices) {
-    return;
-  }
-
-  typeSelect.addEventListener('change', () => {
-    setTariffChoices(tariffChoices, tariffSelect, typeSelect.value);
+    if (dependentOptions.has(select)) {
+      initDependentSelect({
+        form,
+        select,
+        choices,
+        options: dependentOptions.get(select),
+      });
+    }
   });
 }

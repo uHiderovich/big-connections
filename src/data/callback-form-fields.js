@@ -9,7 +9,7 @@ function toTariffOption(title, prefix) {
   };
 }
 
-export const callbackTariffOptionsByType = {
+const callbackTariffOptionsByType = {
   apartments: [
     toTariffOption('Интернет 50', 'apartments'),
     toTariffOption('Интернет 100', 'apartments'),
@@ -19,6 +19,10 @@ export const callbackTariffOptionsByType = {
     toTariffOption(tariff.title, 'private'),
   ),
 };
+
+const callbackTariffOptions = Object.entries(callbackTariffOptionsByType).flatMap(([parent, options]) =>
+  options.map((option) => ({ ...option, parent })),
+);
 
 export const callbackSectionFormFields = [
   {
@@ -71,7 +75,6 @@ export const callbackModalFormFields = [
     type: 'select',
     name: 'tariffType',
     placeholder: 'Выберите тип подключения',
-    controls: 'tariff',
     options: [
       { value: 'apartments', label: 'Для квартир' },
       { value: 'private-sector', label: 'Для частного сектора' },
@@ -82,6 +85,7 @@ export const callbackModalFormFields = [
     name: 'tariff',
     placeholder: 'Выберите тариф',
     disabled: true,
-    options: [],
+    dependsOn: 'tariffType',
+    options: callbackTariffOptions,
   },
 ];
