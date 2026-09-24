@@ -1,1 +1,1 @@
-export const notFoundPageUrl = '/pages/404.html';
+export const notFoundPageUrl = '/404.html';

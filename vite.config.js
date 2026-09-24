@@ -63,10 +63,9 @@ function collectHtmlFiles(directory) {
 function getHtmlInputs() {
   return collectHtmlFiles(pagesDir).reduce((inputs, filePath) => {
     const pageName = relative(pagesDir, filePath).replace(/\.html$/, '') || 'index';
-    const name = `pages/${pageName}`;
     return {
       ...inputs,
-      [name]: filePath,
+      [pageName]: filePath,
     };
   }, {});
 }
@@ -92,19 +91,68 @@ function relocateDistDirectory(fromDir, toDir) {
 }
 
 function relocateHtmlOutput() {
+  let distDir = resolve(projectRoot, 'dist');
+
   return {
     name: 'relocate-html-output',
+    apply: 'build',
+    configResolved(config) {
+      distDir = resolve(config.root, config.build.outDir);
+    },
     closeBundle() {
-      const distDir = resolve(projectRoot, 'dist');
       const srcPagesDir = resolve(distDir, 'src/pages');
-      const distPagesDir = resolve(distDir, 'pages');
 
-      relocateDistDirectory(srcPagesDir, distPagesDir);
+      relocateDistDirectory(srcPagesDir, distDir);
 
       const srcDir = resolve(distDir, 'src');
       if (existsSync(srcDir)) {
         rmSync(srcDir, { recursive: true, force: true });
       }
+    },
+  };
+}
+
+// Vite prefixes asset URLs with `base`, but not links and lazy `data-*` sources
+function prefixRootUrls() {
+  let base = '/';
+
+  const withBase = (url) => {
+    if (!url.startsWith('/') || url.startsWith('//') || url.startsWith(base)) {
+      return url;
+    }
+
+    return `${base}${url.slice(1)}`;
+  };
+
+  const withBaseSrcset = (srcset) => srcset
+    .split(',')
+    .map((candidate) => {
+      const [url, ...descriptors] = candidate.trim().split(/\s+/);
+      return [withBase(url), ...descriptors].join(' ');
+    })
+    .join(', ');
+
+  return {
+    name: 'prefix-root-urls',
+    apply: 'build',
+    configResolved(config) {
+      base = config.base;
+    },
+    transformIndexHtml: {
+      order: 'post',
+      handler(html) {
+        if (base === '/') {
+          return html;
+        }
+
+        return html.replace(
+          /\s(href|src|action|data-src|srcset|data-srcset)="([^"]*)"/g,
+          (_match, attribute, value) => {
+            const url = attribute.endsWith('srcset') ? withBaseSrcset(value) : withBase(value);
+            return ` ${attribute}="${url}"`;
+          },
+        );
+      },
     },
   };
 }
@@ -163,13 +211,13 @@ function mpaDevRoutes() {
     configureServer(server) {
       server.middlewares.use((req, _res, next) => {
         const url = req.url?.split('?')[0];
-        if (url === '/' || url === '/index.html') {
+
+        if (url === '/') {
           req.url = '/src/pages/index.html';
-        } else if (url === '/404' || url === '/404.html') {
-          req.url = '/src/pages/404.html';
-        } else if (url?.startsWith('/pages/') && url.endsWith('.html')) {
-          req.url = `/src/pages/${url.slice('/pages/'.length)}`;
+        } else if (url?.endsWith('.html') && existsSync(resolve(pagesDir, url.slice(1)))) {
+          req.url = `/src/pages${url}`;
         }
+
         next();
       });
     },
@@ -241,6 +289,7 @@ function nunjucksHtml() {
 }
 
 export default defineConfig({
+  base: process.env.BASE_PATH || '/',
   resolve: {
     alias: {
       '@': projectRoot + '/src',
@@ -249,6 +298,7 @@ export default defineConfig({
   plugins: [
     relocateHtmlOutput(),
     nunjucksHtml(),
+    prefixRootUrls(),
     nunjucksHmr(),
     createSvgIconsPlugin({
       iconDirs: [resolve(projectRoot, 'src/assets/images/icons')],
