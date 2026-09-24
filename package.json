@@ -7,6 +7,7 @@
   "scripts": {
     "dev": "vite",
     "build": "vite build && node scripts/format-html.js",
+    "build:gh": "BASE_PATH=/redesign_big_connections/ npm run build",
     "preview": "vite preview",
     "images": "node scripts/optimize-images.js",
     "lint": "eslint .",
