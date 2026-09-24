@@ -8,6 +8,7 @@
     "dev": "vite",
     "build": "vite build && node scripts/format-html.js",
     "preview": "vite preview",
+    "images": "node scripts/optimize-images.js",
     "lint": "eslint .",
     "format": "prettier --write \"**/*.{html,njk,scss,js,json,md}\""
   },

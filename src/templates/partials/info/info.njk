@@ -72,6 +72,8 @@
                 src="{{ card.image }}"
                 width="{{ card.width }}"
                 height="{{ card.height }}"
+                loading="lazy"
+                decoding="async"
                 alt=""
               >
             </li>
@@ -90,6 +92,8 @@
                 src="{{ region.image }}"
                 width="100"
                 height="100"
+                loading="lazy"
+                decoding="async"
                 alt="{{ region.alt }}"
               >
               {{ regionDropdown(region.id, region.buttonLabel, region.cities) }}

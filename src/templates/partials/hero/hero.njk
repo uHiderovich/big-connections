@@ -13,6 +13,8 @@
 <source
   media="(max-width: 765px)"
   type="{{ format.type }}"
+  width="375"
+  height="525"
   {% if eager %}
   srcset="{{ mobileSrcset }}"
   {% else %}
@@ -27,6 +29,8 @@
 {% if desktopSrcset %}
 <source
   type="{{ format.type }}"
+  width="1200"
+  height="400"
   {% if eager %}
   srcset="{{ desktopSrcset }}"
   {% else %}
@@ -50,6 +54,8 @@
           <img
             class="hero__slide-image"
             alt="Hero"
+            width="1200"
+            height="400"
             decoding="async"
             {% if eager %}
             src="{{ desktop }}@2x.jpg"

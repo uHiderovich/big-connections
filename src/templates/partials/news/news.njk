@@ -25,7 +25,14 @@
         {% for item in newsItems %}
         <li class="news__item">
           <div class="news__image">
-            <img src="{{ item.image }}" alt="{{ item.title }}">
+            <img
+              src="{{ item.image }}"
+              width="280"
+              height="186"
+              loading="lazy"
+              decoding="async"
+              alt="{{ item.title }}"
+            >
           </div>
 
           <div class="news__content">
