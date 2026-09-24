@@ -1,7 +1,7 @@
 export const homeVideoSurveillanceTariffs = [
   {
     title: '1 камера',
-    description: 'При тарифе от 100 Мбит/сек подключение бесплатное',
+    description: 'При тарифе от 100 мбит/сек подключение бесплатное',
     buttonText: 'Подключить бесплатно*',
   },
   {

@@ -1,20 +1,11 @@
+import { apartmentInternetTariffs } from './apartment-internet-tariffs.js';
 import { privateInternetTariffs } from './private-internet-tariffs.js';
 
-function toTariffOption(title, prefix) {
-  const speed = title.match(/\d+/)?.[0] ?? title;
-
-  return {
-    value: `${prefix}-internet-${speed}`,
-    label: title,
-  };
-}
-
 const callbackTariffOptionsByType = {
-  apartments: [
-    toTariffOption('Интернет 50', 'apartments'),
-    toTariffOption('Интернет 100', 'apartments'),
-    toTariffOption('Интернет 200', 'apartments'),
-  ],
+  apartments: apartmentInternetTariffs.map(({ value, title }) => ({
+    value,
+    label: title,
+  })),
   'private-sector': privateInternetTariffs.map(({ value, title }) => ({
     value,
     label: title,

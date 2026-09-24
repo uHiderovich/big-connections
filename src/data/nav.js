@@ -16,11 +16,10 @@ export const headerNavItems = [
     id: 'tariffs',
     label: 'Тарифы и услуги',
     items: [
-      { text: 'Интернет в много-квартирный дом', href: notFoundPageUrl },
+      { text: 'Интернет в много-квартирный дом', href: '/apartment-internet.html' },
       { text: 'Интернет для частного сектора', href: '/private-internet.html' },
       { text: 'Видеонаблюдение', href: '/home-video-surveillance.html' },
       { text: 'Цифровое ТВ', href: '/television.html' },
-      { text: 'Радио', href: notFoundPageUrl },
     ],
   },
 ];

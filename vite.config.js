@@ -11,6 +11,7 @@ import {
 import { televisionTariffs } from './src/data/television-tariffs.js';
 import { homeVideoSurveillanceTariffs } from './src/data/home-video-surveillance-tariffs.js';
 import { instructionSections } from './src/data/instructions.js';
+import { apartmentInternetTariffs } from './src/data/apartment-internet-tariffs.js';
 import { privateInternetTariffs } from './src/data/private-internet-tariffs.js';
 import {
   mainOfficeAddress,
@@ -246,6 +247,7 @@ function nunjucksHtml() {
   env.addGlobal('socialLinks', socialLinks);
   env.addGlobal('contactSections', contactSections);
   env.addGlobal('instructionSections', instructionSections);
+  env.addGlobal('apartmentInternetTariffs', apartmentInternetTariffs);
   env.addGlobal('privateInternetTariffs', privateInternetTariffs);
   env.addGlobal('homeVideoSurveillanceTariffs', homeVideoSurveillanceTariffs);
   env.addGlobal('televisionTariffs', televisionTariffs);

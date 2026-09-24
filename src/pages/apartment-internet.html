@@ -1,0 +1,17 @@
+{% extends "layouts/default.njk" %}
+
+{% set title = "Интернет в многоквартирный дом — Большие Связи" %}
+{% set description = "Тарифы интернета для многоквартирных домов в г. Черемхово" %}
+{% set tariffPage = {
+  title: "Тарифы для многоквартирных домов / г. Черемхово",
+  breadcrumbs: [
+    { text: "Тарифы и услуги" },
+    { text: "Интернет для города" }
+  ],
+  items: apartmentInternetTariffs,
+  tariffType: "apartments"
+} %}
+
+{% block content %}
+  {% include "pages/tariffs/tariffs.njk" %}
+{% endblock %}
