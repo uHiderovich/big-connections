@@ -1,18 +1,20 @@
 .hero {
   display: grid;
   position: relative;
-  height: 400px;
+  height: auto;
+  max-height: 400px;
   overflow: hidden;
 
   @media (max-width: 1199px) {
-    height: 340px;
+    max-height: 340px;
   }
 
   @media screen and (max-width: 976px) {
-    height: 524px;
+    max-height: 524px;
   }
 
   @media screen and (max-width: 768px) {
+    max-height: unset;
     padding: 0;
   }
 

@@ -149,6 +149,7 @@
 
     @media screen and (max-width: 768px) {
       flex-direction: row;
+      align-items: flex-start;
       gap: 25px;
     }
 
