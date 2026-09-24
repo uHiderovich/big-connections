@@ -1,3 +1,20 @@
+<!--
+  Отправка из JS, не обычный submit браузера.
+  Её подключает обёртка: js-callback-box на блоке страницы или js-callback-modal в модалке.
+
+  Куда: data-submit-url, если он задан на form. Иначе action.
+  action="#" или пустой action — адрес не задан, запрос не уходит.
+  Метод: атрибут method (post).
+  Тело: FormData, multipart/form-data.
+  В тело попадают поля с атрибутом name, кроме disabled.
+  Успех: HTTP 2xx. Тело ответа не читается.
+  Ошибка: другой статус или сбой сети. Тело ответа не читается.
+
+  Имена полей — атрибут name у input и select ниже.
+  formType отличает форму: callback-section или callback-modal.
+  data-required — на клиенте поле нельзя отправить пустым.
+  data-validate="phone" — в запрос уходит маска «+7 (999) 123-45-67» или «8 (999) 123-45-67».
+-->
 <form
   class="callback-form js-callback-form"
   action="{{ callbackFormAction | default('#') }}"

@@ -9,6 +9,23 @@
     Заказать обратный звонок
   </h2>
 
+  <!--
+    Селекты. Класс js-choices-select только рисует выпадающий список.
+    В запрос уходит value выбранного option, имя поля — атрибут name.
+
+    tariffType — тип подключения:
+    apartments — «Для квартир», private-sector — «Для частного сектора».
+
+    tariff зависит от tariffType, атрибут data-depends-on="tariffType":
+    - у option тарифа data-parent равен value типа (apartments или private-sector);
+    - в списке остаются только option с тем же data-parent;
+    - пока тип не выбран, select tariff стоит disabled и в запрос не попадает;
+    - после выбора типа select включается, предыдущий тариф сбрасывается;
+    - если тариф не выбран, уходит tariff с пустым value.
+
+    Кнопка с data-bc-open="callback-modal", data-tariff-type и data-tariff
+    заранее ставит эти два поля. В запрос data-атрибуты кнопки не входят.
+  -->
   {% set callbackFormFields = callbackModalFormFields %}
   {% set callbackFormType = "callback-modal" %}
   {% include "partials/callback/form/form.njk" %}

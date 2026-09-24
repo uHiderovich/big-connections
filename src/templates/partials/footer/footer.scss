@@ -159,6 +159,13 @@
     flex-shrink: 0;
   }
 
+  &__qr-link {
+    display: block;
+    width: fit-content;
+    line-height: 0;
+    text-decoration: none;
+  }
+
   &__qr {
     display: block;
     width: 130px;
