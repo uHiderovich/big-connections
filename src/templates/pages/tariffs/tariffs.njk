@@ -8,6 +8,7 @@
       {{ tariffPage.title }}
     </h1>
 
+    {% set tariffType = tariffPage.tariffType %}
     <ul class="tariff-page__grid">
       {% for item in tariffPage.items %}
         {% set tariff = item %}

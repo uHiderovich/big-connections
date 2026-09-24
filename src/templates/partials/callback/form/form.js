@@ -51,7 +51,7 @@ function getSubmitUrl(form) {
   return action;
 }
 
-async function sendForm(form) {
+async function sendForm(form, formData) {
   const submitUrl = getSubmitUrl(form);
 
   if (!submitUrl) {
@@ -60,7 +60,7 @@ async function sendForm(form) {
 
   const response = await fetch(submitUrl, {
     method: form.method || 'POST',
-    body: new FormData(form),
+    body: formData,
   });
 
   if (!response.ok) {
@@ -89,16 +89,16 @@ function initForm(config) {
     return null;
   }
 
-  initCallbackSelects(form);
+  const selects = initCallbackSelects(form);
 
-  form.querySelectorAll('[data-validate="phone"]').forEach((phone) => {
+  const masks = [...form.querySelectorAll('[data-validate="phone"]')].map((phone) =>
     IMask(phone, {
       mask: [
         '+{7} (000) 000-00-00',
         '8 (000) 000-00-00',
       ],
-    });
-  });
+    }),
+  );
 
   const validation = new JustValidate(form, {
     errorFieldCssClass: invalidClass,
@@ -126,27 +126,49 @@ function initForm(config) {
     validation.addField(`[name="${field.name}"]`, rules);
   });
 
-  form.querySelectorAll('input:not([data-required]):not([data-validate])').forEach((field) => {
+  form.querySelectorAll('input:not([type="hidden"]):not([data-required]):not([data-validate])').forEach((field) => {
     field.addEventListener('input', () => {
       updateFieldWithoutRulesState(field);
     });
   });
 
+  const resetForm = () => {
+    form.reset();
+    masks.forEach((mask) => mask.updateValue());
+    selects.reset();
+    validation.clearErrors();
+    form.querySelectorAll(`.${validClass}, .${invalidClass}`).forEach((field) => {
+      field.classList.remove(validClass, invalidClass);
+    });
+  };
+
   validation.onSuccess(async () => {
+    // lockForm() disables fields, and disabled fields are excluded from FormData
+    const formData = new FormData(form);
+
     validation.lockForm();
 
+    let isSent = false;
+
     try {
-      await sendForm(form);
-      successCallback();
+      await sendForm(form, formData);
+      isSent = true;
     } catch {
       errorCallback();
     } finally {
       validation.unlockForm();
     }
+
+    if (isSent) {
+      successCallback();
+      resetForm();
+    }
   });
 
   return {
     resetView: showFormView,
+    resetForm,
+    setValues: selects.setValues,
     form,
     validation,
   };

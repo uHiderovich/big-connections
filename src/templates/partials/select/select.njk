@@ -1,7 +1,7 @@
 <select
   class="select callback-form__field js-choices-select"
+  id="{{ fieldId }}"
   name="{{ field.name }}"
-  aria-label="{{ field.placeholder }}"
   data-placeholder="{{ field.placeholder }}"
   {% if field.dependsOn %} data-depends-on="{{ field.dependsOn }}"{% endif %}
   {% if field.disabled %} disabled{% endif %}

@@ -1,24 +1,29 @@
 <form
   class="callback-form js-callback-form"
-  action="#"
+  action="{{ callbackFormAction | default('#') }}"
   method="post"
   novalidate
 >
+  <input type="hidden" name="formType" value="{{ callbackFormType }}">
+
   <div class="callback-form__fields">
     {% for field in callbackFormFields | default(callbackSectionFormFields) %}
+    {% set fieldId = callbackFormType ~ '-' ~ field.name %}
     <div class="callback-form__field-wrap">
+      <label class="visually-hidden" for="{{ fieldId }}">{{ field.label }}</label>
       {% if field.type == 'select' %}
       {% include "partials/select/select.njk" %}
       {% else %}
       <input
         class="callback-form__field"
+        id="{{ fieldId }}"
         type="{{ field.type }}"
         name="{{ field.name }}"
         placeholder="{{ field.placeholder }}"
         {% if field.autocomplete %} autocomplete="{{ field.autocomplete }}"{% endif %}
         {% if field.inputmode %} inputmode="{{ field.inputmode }}"{% endif %}
         {% if field.validate %} data-validate="{{ field.validate }}"{% endif %}
-        {% if field.required %} data-required{% endif %}
+        {% if field.required %} data-required aria-required="true"{% endif %}
       >
       {% endif %}
     </div>

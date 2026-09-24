@@ -15,58 +15,54 @@ const callbackTariffOptionsByType = {
     toTariffOption('Интернет 100', 'apartments'),
     toTariffOption('Интернет 200', 'apartments'),
   ],
-  'private-sector': privateInternetTariffs.map((tariff) =>
-    toTariffOption(tariff.title, 'private'),
-  ),
+  'private-sector': privateInternetTariffs.map(({ value, title }) => ({
+    value,
+    label: title,
+  })),
 };
 
 const callbackTariffOptions = Object.entries(callbackTariffOptionsByType).flatMap(([parent, options]) =>
   options.map((option) => ({ ...option, parent })),
 );
 
+const nameField = {
+  type: 'text',
+  name: 'name',
+  label: 'Ваше имя',
+  placeholder: 'Ваше имя',
+  autocomplete: 'name',
+};
+
+const phoneField = {
+  type: 'tel',
+  name: 'phone',
+  label: 'Ваш телефон',
+  placeholder: 'Ваш телефон *',
+  autocomplete: 'tel',
+  inputmode: 'tel',
+  validate: 'phone',
+  required: true,
+};
+
 export const callbackSectionFormFields = [
-  {
-    type: 'text',
-    name: 'name',
-    placeholder: 'Ваше имя',
-    autocomplete: 'name',
-  },
-  {
-    type: 'tel',
-    name: 'phone',
-    placeholder: 'Ваш телефон *',
-    autocomplete: 'tel',
-    inputmode: 'tel',
-    validate: 'phone',
-    required: true,
-  },
+  nameField,
+  phoneField,
   {
     type: 'text',
     name: 'address',
+    label: 'Ваш адрес',
     placeholder: 'Ваш адрес',
     autocomplete: 'street-address',
   },
 ];
 
 export const callbackModalFormFields = [
-  {
-    type: 'text',
-    name: 'name',
-    placeholder: 'Ваше имя',
-    autocomplete: 'name',
-  },
-  {
-    type: 'tel',
-    name: 'phone',
-    placeholder: 'Ваш телефон *',
-    autocomplete: 'tel',
-    inputmode: 'tel',
-    validate: 'phone',
-    required: true,
-  },
+  nameField,
+  phoneField,
   {
     type: 'text',
     name: 'address',
+    label: 'Ваш адрес',
     placeholder: 'Ваш адрес *',
     autocomplete: 'street-address',
     required: true,
@@ -74,6 +70,7 @@ export const callbackModalFormFields = [
   {
     type: 'select',
     name: 'tariffType',
+    label: 'Тип подключения',
     placeholder: 'Выберите тип подключения',
     options: [
       { value: 'apartments', label: 'Для квартир' },
@@ -83,6 +80,7 @@ export const callbackModalFormFields = [
   {
     type: 'select',
     name: 'tariff',
+    label: 'Тариф',
     placeholder: 'Выберите тариф',
     disabled: true,
     dependsOn: 'tariffType',

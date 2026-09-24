@@ -7,6 +7,7 @@
   {% if button.href %}href="{{ button.href }}"{% endif %}
   {% if tag == 'button' %}type="{{ button.type | default('button') }}"{% endif %}
   {% if button.dataBcOpen %} data-bc-open="{{ button.dataBcOpen }}"{% endif %}
+  {% for key, value in button.data | default({}) %}{% if value %} data-{{ key }}="{{ value }}"{% endif %}{% endfor %}
 >
   {{ button.text }}
 </{{ tag }}>

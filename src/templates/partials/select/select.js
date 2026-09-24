@@ -9,18 +9,8 @@ const choicesConfig = {
   position: 'bottom',
 };
 
-function getPlaceholderChoice(select) {
-  return {
-    value: '',
-    label: select.dataset.placeholder || 'Выберите тариф',
-    selected: true,
-    disabled: true,
-    placeholder: true,
-  };
-}
-
-function getDependentOptions(select) {
-  return [...select.querySelectorAll('option[data-parent]')].map((option) => ({
+function getOptions(select) {
+  return [...select.querySelectorAll('option:not([value=""])')].map((option) => ({
     value: option.value,
     label: option.textContent.trim(),
     parent: option.dataset.parent,
@@ -28,18 +18,40 @@ function getDependentOptions(select) {
   }));
 }
 
-function setDependentChoices({ choices, select, options, parentValue, keepSelected = false }) {
-  const filteredOptions = options
-    .filter((option) => option.parent === parentValue)
-    .map(({ value, label, selected }) => ({
-      value,
-      label,
-      selected: keepSelected && selected,
-    }));
+function renderChoices(control, { parentValue, selectedValue = '' }) {
+  const { select, choices, options, parentName } = control;
+  const availableOptions = parentName
+    ? options.filter((option) => option.parent === parentValue)
+    : options;
+  const hasSelected = availableOptions.some((option) => option.value === selectedValue);
 
-  choices.setChoices([getPlaceholderChoice(select), ...filteredOptions], 'value', 'label', true, true, true);
+  choices.setChoices(
+    [
+      {
+        value: '',
+        label: select.dataset.placeholder,
+        selected: !hasSelected,
+        disabled: true,
+        placeholder: true,
+      },
+      ...availableOptions.map(({ value, label }) => ({
+        value,
+        label,
+        selected: value === selectedValue,
+      })),
+    ],
+    'value',
+    'label',
+    true,
+    true,
+    true,
+  );
 
-  if (filteredOptions.length) {
+  if (!parentName) {
+    return;
+  }
+
+  if (availableOptions.length) {
     choices.enable();
     return;
   }
@@ -47,59 +59,53 @@ function setDependentChoices({ choices, select, options, parentValue, keepSelect
   choices.disable();
 }
 
-function initDependentSelect({ form, select, choices, options }) {
-  const parentSelect = form.querySelector(`[name="${select.dataset.dependsOn}"]`);
-
-  if (!parentSelect) {
-    return;
-  }
-
-  if (parentSelect.value) {
-    setDependentChoices({
-      choices,
-      select,
-      options,
-      parentValue: parentSelect.value,
-      keepSelected: true,
-    });
-  }
-
-  parentSelect.addEventListener('change', () => {
-    setDependentChoices({
-      choices,
-      select,
-      options,
-      parentValue: parentSelect.value,
-    });
-  });
-}
-
 export function initCallbackSelects(form) {
-  const selects = [...form.querySelectorAll('.js-choices-select')];
-
-  if (!selects.length) {
-    return;
-  }
-
-  const dependentSelects = selects.filter((select) => select.dataset.dependsOn);
-  const dependentOptions = new Map(
-    dependentSelects.map((select) => [select, getDependentOptions(select)]),
-  );
-
-  selects.forEach((select) => {
+  const controls = [...form.querySelectorAll('.js-choices-select')].map((select) => {
+    const options = getOptions(select);
     const choices = new Choices(select, choicesConfig);
 
     if (select.disabled) {
       choices.disable();
     }
 
-    if (dependentOptions.has(select)) {
-      initDependentSelect({
-        form,
-        select,
-        choices,
-        options: dependentOptions.get(select),
-      });
-    }
+    return {
+      select,
+      choices,
+      options,
+      parentName: select.dataset.dependsOn,
+    };
   });
+
+  const getParentValue = (control) => form.querySelector(`[name="${control.parentName}"]`)?.value ?? '';
+
+  controls
+    .filter((control) => control.parentName)
+    .forEach((control) => {
+      const parentValue = getParentValue(control);
+
+      if (parentValue) {
+        renderChoices(control, {
+          parentValue,
+          selectedValue: control.options.find((option) => option.selected)?.value,
+        });
+      }
+
+      form.querySelector(`[name="${control.parentName}"]`)?.addEventListener('change', () => {
+        renderChoices(control, { parentValue: getParentValue(control) });
+      });
+    });
+
+  const setValues = (values = {}) => {
+    controls.forEach((control) => {
+      renderChoices(control, {
+        parentValue: control.parentName ? getParentValue(control) : undefined,
+        selectedValue: values[control.select.name],
+      });
+    });
+  };
+
+  return {
+    setValues,
+    reset: () => setValues(),
+  };
 }

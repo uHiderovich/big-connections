@@ -25,6 +25,7 @@
         Тарифы для квартир / г. Черемхово
       </h2>
 
+      {% set tariffType = "private-sector" %}
       <ul class="tariff-page__grid">
         {% for item in privateInternetTariffs %}
           {% set tariff = item %}

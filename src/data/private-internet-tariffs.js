@@ -1,5 +1,6 @@
 export const privateInternetTariffs = [
   {
+    value: 'private-internet-50',
     title: 'Интернет 50',
     features: [
       { icon: 'internet', text: '50 Мбит/с' },
@@ -9,6 +10,7 @@ export const privateInternetTariffs = [
     buttonText: 'Подключить за 4 000 ₽',
   },
   {
+    value: 'private-internet-100',
     title: 'Интернет 100',
     features: [
       { icon: 'internet', text: '100 Мбит/с' },
@@ -18,6 +20,7 @@ export const privateInternetTariffs = [
     buttonText: 'Подключить за 4 000 ₽',
   },
   {
+    value: 'private-internet-200',
     title: 'Интернет 200',
     features: [
       { icon: 'internet', text: '200 Мбит/с' },
@@ -27,6 +30,7 @@ export const privateInternetTariffs = [
     buttonText: 'Подключить за 4 000 ₽',
   },
   {
+    value: 'private-internet-300',
     title: 'Интернет 300',
     features: [
       { icon: 'internet', text: '300 Мбит/с' },

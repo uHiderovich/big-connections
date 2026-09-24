@@ -28,7 +28,12 @@
     {% set button = {
       text: tariff.buttonText,
       variant: "orange",
-      class: "btn--full"
+      class: "btn--full",
+      dataBcOpen: "callback-modal",
+      data: {
+        "tariff-type": tariffType,
+        "tariff": tariff.value
+      }
     } %}
     {% include "partials/button/button.njk" %}
   </div>

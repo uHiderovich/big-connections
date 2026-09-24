@@ -33,6 +33,20 @@ const loadOnTriggerIntent = (event) => {
 document.addEventListener('pointerover', loadOnTriggerIntent, { passive: true });
 document.addEventListener('focusin', loadOnTriggerIntent);
 
+document.addEventListener('click', (event) => {
+  const trigger = event.target.closest?.(`${callbackTriggerSelector}[data-tariff-type]`);
+
+  if (!trigger) {
+    return;
+  }
+
+  const { tariffType, tariff } = trigger.dataset;
+
+  loadCallbackForms().then(({ presetCallbackModal }) => {
+    presetCallbackModal({ tariffType, tariff });
+  });
+});
+
 const callbackBoxes = document.querySelectorAll('.js-callback-box');
 
 if (callbackBoxes.length) {
